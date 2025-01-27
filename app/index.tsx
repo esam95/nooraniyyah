@@ -4,21 +4,15 @@ import { StyleSheet, View, Button } from "react-native";
 import { generateRandomLetter } from '@/functions/GenerateRandomLetter';
 import TargetLetter from '@/components/TargetLetter';
 import Score from '@/components/Score';
-import { useAudioPlayer } from 'expo-audio';
 
-const audioSource = require('../assets/baa.mp3');
 export default function Index() {
   const targetLetter = useRef<string>(generateRandomLetter());
   const [score, setScore] = useState<number>(0);
-  const player = useAudioPlayer(audioSource);
 
   return (
     <View style={styles.container}>
       {/* Target Letter Section */}
       <View style={styles.targetSection}>
-
-      <Button title="Play Sound" onPress={() => player.play()} />
-
         <TargetLetter targetLetter={targetLetter.current} />
       </View>
 
