@@ -1,0 +1,33 @@
+const LETTERSURI = [
+  { letter: "ي", file: "029-yaa" },
+  { letter: "ء", file: "028-hamza" },
+  { letter: "هـ", file: "027-ha" },
+  { letter: "و", file: "026-waw" },
+  { letter: "ن", file: "025-noon" },
+  { letter: "م", file: "024-meem" },
+  { letter: "ل", file: "023-laam" },
+  { letter: "ك", file: "022-kaaf" },
+  { letter: "ق", file: "021-qaaf" },
+  { letter: "ف", file: "020-faa" },
+  { letter: "غ", file: "019-ghain" },
+  { letter: "ع", file: "018-ain" },
+  { letter: "ظ", file: "017-dhaa" },
+  { letter: "ط", file: "016-toa" },
+  { letter: "ض", file: "015-dhaad" },
+  { letter: "ص", file: "014-saad" },
+  { letter: "ش", file: "013-sheen" },
+  { letter: "س", file: "012-seen" },
+  { letter: "ز", file: "011-jaa" },
+  { letter: "ر", file: "010-raa" },
+  { letter: "ذ", file: "009-dhal" },
+  { letter: "د", file: "008-dal" },
+  { letter: "خ", file: "007-khaa" },
+  { letter: "ح", file: "006-haa" },
+  { letter: "ج", file: "005-jeem" },
+  { letter: "ث", file: "004-tha" },
+  { letter: "ت", file: "003-taa" },
+  { letter: "ب", file: "ba" },
+  { letter: "أ", file: "001-alif" }
+];
+
+export default LETTERSURI;

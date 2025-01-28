@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Animated, StyleSheet, Dimensions, TouchableWithoutFeedback } from 'react-native';
 import { generateRandomLetter } from '@/functions/GenerateRandomLetter';
-import { useAudioPlayer } from 'expo-audio';
-import useAudioSource from '@/hooks/useAudioSource';
+import { PlaySound } from '@/functions/playSound';
 
 
 interface Props {
@@ -26,14 +25,12 @@ const distanceToTravel = height; // From top (0) to bottom (screen height)
 const duration = (distanceToTravel / BALL_SPEED) * 1000; // Time = distance / speed (convert to ms)
 
 export default function GameSection({ targetLetter, score, setScore}: Props) {
-  const player = useAudioPlayer(useAudioSource(targetLetter));
-
   const [balls, setBalls] = useState<Ball[]>([]);
   useEffect(() => {
     // Spawn a new ball every xx seconds
     const interval = setInterval(() => {
       spawnBall();
-    }, 4000);
+    }, 1000);
 
     return () => clearInterval(interval); // Clean up the interval when the component unmounts
   }, []);
@@ -69,7 +66,7 @@ export default function GameSection({ targetLetter, score, setScore}: Props) {
   };
 
   const popBall = (clickedBall: Ball) => {
-    player.play();
+    PlaySound(clickedBall.letter);
     Animated.sequence([
       // Scale the ball up to 1.5x size
       Animated.timing(clickedBall.scaleAnimation, {
