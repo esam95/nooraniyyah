@@ -24,13 +24,13 @@ const BALL_SPEED = 100;
 const distanceToTravel = height; // From top (0) to bottom (screen height)
 const duration = (distanceToTravel / BALL_SPEED) * 1000; // Time = distance / speed (convert to ms)
 
-export default function GameSection({ targetLetter, score, setScore}: Props) {
+export default function GameSection2({ targetLetter, score, setScore }: Props) {
   const [balls, setBalls] = useState<Ball[]>([]);
   useEffect(() => {
     // Spawn a new ball every xx seconds
     const interval = setInterval(() => {
       spawnBall();
-    }, 4000);
+    }, 500);
 
     return () => clearInterval(interval); // Clean up the interval when the component unmounts
   }, []);
