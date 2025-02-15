@@ -27,6 +27,13 @@ export default function Layout() {
             title: 'Level 2',
           }}
         />
+        <Drawer.Screen
+          name="level3" // This is the name of the page and must match the url from root
+          options={{
+            drawerLabel: 'Level 3',
+            title: 'Level 3',
+          }}
+        />
       </Drawer>
     </GestureHandlerRootView>
   );

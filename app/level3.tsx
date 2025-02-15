@@ -5,8 +5,9 @@ import { generateRandomLetter } from '@/functions/GenerateRandomLetter';
 import TargetLetter2 from '@/components/TargetLetter2';
 import Score from '@/components/Score';
 import { LETTERS } from '@/constants/LettersAndVowels';
+import Tashkeel from '@/components/Tashkeel';
 
-export default function Level2() {
+export default function Level3() {
   const [letterArray, setLetterArray] = useState<string[]>(LETTERS)
   const [ targetLetter, setTargetLetter ] = useState<string>(letterArray[0]);
   const [score, setScore] = useState<number>(0);
@@ -36,15 +37,16 @@ export default function Level2() {
         <TargetLetter2 targetLetter={targetLetter} score={score} letterArray={letterArray} />
       </View>
       
+      {/* Score Section */}
+      <View style={styles.scoreSection}>
+        <Tashkeel score={score} />
+      </View>
+
       {/* Game Section */}
       <View style={styles.gameSection}>
         <GameSection2 targetLetter={targetLetter} score={score} setScore={setScore} />
       </View>
 
-      {/* Score Section */}
-      <View style={styles.scoreSection}>
-        <Score score={score} />
-      </View>
     </View>
   );
 }

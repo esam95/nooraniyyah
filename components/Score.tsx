@@ -9,7 +9,8 @@ export default function Score({ score }: ScoreProps) {
   return (
     <View style={styles.scoreContainer}>
       <Text style={styles.scoreText}>Score: {score}</Text>
-    </View>  );
+    </View>  
+  );
 }
 
 const styles = StyleSheet.create({
