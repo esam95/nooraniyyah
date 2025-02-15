@@ -6,11 +6,14 @@ import TargetLetter2 from '@/components/TargetLetter2';
 import Score from '@/components/Score';
 import { LETTERS } from '@/constants/LettersAndVowels';
 import Tashkeel from '@/components/Tashkeel';
+import GameSection3 from '@/components/GameSection3';
+import TargetLetter3 from '@/components/TargetLetter3';
 
 export default function Level3() {
-  const [letterArray, setLetterArray] = useState<string[]>(LETTERS)
+  const [ letterArray, setLetterArray ] = useState<string[]>(LETTERS)
   const [ targetLetter, setTargetLetter ] = useState<string>(letterArray[0]);
-  const [score, setScore] = useState<number>(0);
+  const [ score, setScore ] = useState<number>(0);
+  const [ clickedVowel, setClickedVowel ] = useState<string>('');
 
   useEffect(() => {
     console.log('Score:', score);
@@ -34,17 +37,17 @@ export default function Level3() {
     <View style={styles.container}>
       {/* Target Letter Section */}
       <View style={styles.targetSection}>
-        <TargetLetter2 targetLetter={targetLetter} score={score} letterArray={letterArray} />
+        <TargetLetter3 targetLetter={targetLetter} score={score} letterArray={letterArray} />
       </View>
       
       {/* Score Section */}
       <View style={styles.scoreSection}>
-        <Tashkeel score={score} />
+        <Tashkeel clickedVowel={clickedVowel} setClickedVowel={setClickedVowel} />
       </View>
 
       {/* Game Section */}
       <View style={styles.gameSection}>
-        <GameSection2 targetLetter={targetLetter} score={score} setScore={setScore} />
+        <GameSection3 />
       </View>
 
     </View>

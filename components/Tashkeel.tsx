@@ -1,23 +1,32 @@
 import { VOWELS } from '@/constants/LettersAndVowels';
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 
-interface ScoreProps {
-  score: number;
+interface Props {
+  clickedVowel: string;
+  setClickedVowel: (clickedVowel: string) => void;
 }
 
-export default function Tashkeel({ score }: ScoreProps) {
+export default function Tashkeel({ clickedVowel, setClickedVowel }: Props) {
   return (
     <View style={styles.container}>
-      <View>
-        <Text style={styles.scoreText}>{VOWELS[0]}</Text>
-      </View>
-      <View>
-        <Text style={styles.scoreText}>{VOWELS[1]}</Text>
-      </View>
-      <View>
-        <Text style={styles.scoreText}>{VOWELS[2]}</Text>
-      </View>
+      <TouchableWithoutFeedback onPress={() => setClickedVowel(VOWELS[0])}>
+        <View>
+          <Text style={styles.scoreText}>{VOWELS[0]}</Text>
+        </View>
+      </TouchableWithoutFeedback>
+
+      <TouchableWithoutFeedback onPress={() => setClickedVowel(VOWELS[1])}>
+        <View>
+          <Text style={styles.scoreText}>{VOWELS[1]}</Text>
+        </View>
+      </TouchableWithoutFeedback>
+
+      <TouchableWithoutFeedback onPress={() => setClickedVowel(VOWELS[2])}>
+        <View>
+          <Text style={styles.scoreText}>{VOWELS[2]}</Text>
+        </View>
+      </TouchableWithoutFeedback>
     </View>  
   );
 }
