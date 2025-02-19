@@ -3,6 +3,12 @@ import { View, Text, Animated, StyleSheet, Dimensions, TouchableWithoutFeedback 
 import { generateRandomLetter } from '@/functions/GenerateRandomLetter';
 import { PlaySound } from '@/functions/playSound';
 
+
+interface Props {
+  targetLetter: string;
+  score: number;
+  setScore: (score: number) => void;
+}
 interface Ball {
   id: number; // Unique identifier for each ball
   fallingAnimation: Animated.Value; // Individual animation for each ball
@@ -18,13 +24,13 @@ const BALL_SPEED = 100;
 const distanceToTravel = height; // From top (0) to bottom (screen height)
 const duration = (distanceToTravel / BALL_SPEED) * 1000; // Time = distance / speed (convert to ms)
 
-export default function GameSection3() {
+export default function GameSection4({ targetLetter, score, setScore }: Props) {
   const [balls, setBalls] = useState<Ball[]>([]);
   useEffect(() => {
     // Spawn a new ball every xx seconds
     const interval = setInterval(() => {
       spawnBall();
-    }, 50000);
+    }, 500);
 
     return () => clearInterval(interval); // Clean up the interval when the component unmounts
   }, []);
@@ -50,6 +56,13 @@ export default function GameSection3() {
       // Remove the ball once the animation is complete
       setBalls((prevBalls) => prevBalls.filter((ball) => ball.id !== newBall.id));
     });
+  };
+
+  const handlePress = (clickedBall: Ball) => {
+    if (clickedBall.letter === targetLetter) {
+      setScore(score + 5);
+      popBall(clickedBall);
+    }
   };
 
   const popBall = (clickedBall: Ball) => {
@@ -87,7 +100,7 @@ export default function GameSection3() {
             },
           ]}
         >
-          <TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={() => handlePress(ball)}>
             <View style={styles.ballInner}>
               <Text style={styles.letter}>{ball.letter}</Text>
             </View>
