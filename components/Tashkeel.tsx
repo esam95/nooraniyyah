@@ -1,28 +1,49 @@
 import { VOWELS } from '@/constants/LettersAndVowels';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 
 interface Props {
-  clickedVowel: string;
+  clickedVowel: string | null;
   setClickedVowel: (clickedVowel: string) => void;
+  vowelClicked: boolean;
+  setVowelClicked: (vowelClicked: boolean) => void;
+  vowelArray: string[];
+  setVowelArray: React.Dispatch<React.SetStateAction<string[]>>;
+  targetLetterClicked: boolean;
+  setTargetLetterClicked: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function Tashkeel({ clickedVowel, setClickedVowel }: Props) {
+export default function Tashkeel({ targetLetterClicked, setTargetLetterClicked, clickedVowel, setClickedVowel, vowelClicked , setVowelClicked, vowelArray, setVowelArray }: Props) {
   return (
     <View style={styles.container}>
-      <TouchableWithoutFeedback onPress={() => setClickedVowel(VOWELS[0])}>
+      <TouchableWithoutFeedback onPress={() => {
+        const newVowel = VOWELS[0];  // Store selected vowel in a variable
+        // setClickedVowel(newVowel), 
+        // setVowelClicked(true), 
+        targetLetterClicked ? (setClickedVowel(newVowel),setVowelClicked(true), setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray)): null, 
+        console.log('clickedVowel', clickedVowel, 'vowelArray', vowelArray)}}>
         <View>
           <Text style={styles.scoreText}>{VOWELS[0]}</Text>
         </View>
       </TouchableWithoutFeedback>
 
-      <TouchableWithoutFeedback onPress={() => setClickedVowel(VOWELS[1])}>
+      <TouchableWithoutFeedback onPress={() => {
+        const newVowel = VOWELS[1];  // Store selected vowel in a variable
+        // setClickedVowel(newVowel),        
+        // setVowelClicked(true), 
+        targetLetterClicked ? (setClickedVowel(newVowel),setVowelClicked(true), setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray)): null, 
+        console.log('clickedVowel', clickedVowel, 'vowelArray', vowelArray)}}>
         <View>
           <Text style={styles.scoreText}>{VOWELS[1]}</Text>
         </View>
       </TouchableWithoutFeedback>
 
-      <TouchableWithoutFeedback onPress={() => setClickedVowel(VOWELS[2])}>
+      <TouchableWithoutFeedback onPress={() => {
+        const newVowel = VOWELS[2];  // Store selected vowel in a variable
+        // setClickedVowel(newVowel),        
+        // setVowelClicked(true), 
+        targetLetterClicked ? (setClickedVowel(newVowel),setVowelClicked(true), setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray)): null, 
+        console.log('clickedVowel', clickedVowel, 'vowelArray', vowelArray)}}>
         <View>
           <Text style={styles.scoreText}>{VOWELS[2]}</Text>
         </View>

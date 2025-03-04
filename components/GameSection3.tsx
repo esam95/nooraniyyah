@@ -1,77 +1,55 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Animated, StyleSheet, Dimensions, TouchableWithoutFeedback } from 'react-native';
 import { generateRandomLetter } from '@/functions/GenerateRandomLetter';
-import { PlaySound } from '@/functions/playSound';
+import { LETTERS, VOWELS } from '@/constants/LettersAndVowels';
+
+interface Props {
+  clickedVowel: string | null;
+  vowelClicked: boolean;
+  setVowelClicked: React.Dispatch<React.SetStateAction<boolean>>;
+  letterArray: string[];
+  vowelArray: string[];
+  setVowelArray: React.Dispatch<React.SetStateAction<string[]>>;
+  targetLetter: string;
+  targetLetterClicked: boolean;
+  setTargetLetterClicked: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 interface Ball {
   id: number; // Unique identifier for each ball
-  fallingAnimation: Animated.Value; // Individual animation for each ball
+  height: number; // Individual animation for each ball
   scaleAnimation: Animated.Value;
-  opacityAnimation: Animated.Value;
   left: number; // Horizontal position
   letter: string; // Letter assigned to the ball
 }
 
 //CONSTANTS
 const { width, height } = Dimensions.get('window');
-const BALL_SPEED = 100;
-const distanceToTravel = height; // From top (0) to bottom (screen height)
-const duration = (distanceToTravel / BALL_SPEED) * 1000; // Time = distance / speed (convert to ms)
 
-export default function GameSection3() {
+export default function GameSection3({ vowelArray, setVowelArray, targetLetterClicked, setTargetLetterClicked, targetLetter, clickedVowel, vowelClicked, setVowelClicked, letterArray }: Props ) {
   const [balls, setBalls] = useState<Ball[]>([]);
+  
   useEffect(() => {
-    // Spawn a new ball every xx seconds
-    const interval = setInterval(() => {
-      spawnBall();
-    }, 50000);
-
-    return () => clearInterval(interval); // Clean up the interval when the component unmounts
-  }, []);
+    if (vowelArray.length === 0) return; // Prevents running on initialization
+    targetLetterClicked && vowelClicked ? spawnBall(): null;
+  }, [vowelArray]);
 
   const spawnBall = () => {
     const newBall: Ball = {
       id: Date.now(), // Unique ID based on timestamp
-      fallingAnimation: new Animated.Value(-50), // Start at the top of the screen
+      height: LETTERS.findIndex(letter => letterArray[0] === letter) * 50, // Start at the top of the screen
       scaleAnimation: new Animated.Value(1),
-      opacityAnimation: new Animated.Value(1),
-      left: Math.random() * (width - 50), // Random horizontal position
-      letter: generateRandomLetter(), // Random letter between A and D
+      left: clickedVowel === VOWELS[0] ? width *3 / 4: clickedVowel === VOWELS[1] ? width * 2 / 4: width * 1 / 4 , // horizontal position
+      letter: targetLetter, // Random letter between A and D
     };
+    // console.log('ball height', newBall.height, 'left', newBall.left, 'height', height, 'width', width)
 
     setBalls((prevBalls) => [...prevBalls, newBall]); // Add new ball to the state
-    
-    // Animate the ball to fall down
-    Animated.timing(newBall.fallingAnimation, {
-      toValue: distanceToTravel, // Move to the bottom of the screen
-      duration: duration, // Falls over 5 seconds
-      useNativeDriver: true,
-    }).start(() => {
-      // Remove the ball once the animation is complete
-      setBalls((prevBalls) => prevBalls.filter((ball) => ball.id !== newBall.id));
-    });
+    setTargetLetterClicked(false);
+    setVowelClicked(false);
+
   };
 
-  const popBall = (clickedBall: Ball) => {
-    PlaySound(clickedBall.letter);
-    Animated.sequence([
-      // Scale the ball up to 1.5x size
-      Animated.timing(clickedBall.scaleAnimation, {
-        toValue: 1.5,
-        duration: 100, // Duration for scaling up
-        useNativeDriver: true,
-      }),
-      // Scale the ball back down to 0
-      Animated.timing(clickedBall.scaleAnimation, {
-        toValue: 0,
-        duration: 150, // Duration for shrinking down
-        useNativeDriver: true,
-      }),
-    ]).start(() => {
-      setBalls((prevBalls) => prevBalls.filter((ball) => ball.id !== clickedBall.id));
-    }
-    );
-  };
 
   return (
     <View style={styles.container}>
@@ -81,8 +59,7 @@ export default function GameSection3() {
           style={[
             styles.ball,
             {
-              transform: [{ translateY: ball.fallingAnimation }, { scale: ball.scaleAnimation }],
-              opacity: ball.opacityAnimation,
+              transform: [{ translateY: ball.height }, { scale: ball.scaleAnimation }],
               left: ball.left,
             },
           ]}
