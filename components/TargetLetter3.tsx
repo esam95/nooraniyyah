@@ -9,8 +9,7 @@ interface TargetLetterProps {
   setTargetLetterClicked: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function TargetLetter3({ targetLetterClicked, letterArray,targetLetter, setTargetLetterClicked }: TargetLetterProps) {
-  // console.log('targetLetter, letterArray', targetLetter, letterArray)
+export default function TargetLetter3({ targetLetterClicked, letterArray, targetLetter, setTargetLetterClicked }: TargetLetterProps) {
   return ( 
     <View style={styles.container}>
       {LETTERS.map((letter) => (
@@ -36,13 +35,13 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     flexDirection: 'row-reverse',
     justifyContent: 'center',
-    gap: '5px'
+    gap: '8px'
   },
   targetLetterContainer: {
-    backgroundColor: '#FF9800', // Vibrant orange
-    borderRadius: 20,
-    width: 30,
-    height: 30,
+    backgroundColor: '#FF9800',
+    borderRadius: 40,
+    width: 45,
+    height: 45,
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#000',
@@ -52,8 +51,10 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   targetLetterText: {
-    fontSize: 15,
+    fontSize: 25,
     fontWeight: 'bold',
     color: '#FFF',
+    writingDirection: 'rtl',
+    fontFamily: 'Amiri',
   },
 });

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View } from "react-native";
 import { LETTERS, VOWELS } from '@/constants/LettersAndVowels';
 import Tashkeel from '@/components/Tashkeel';
@@ -12,18 +12,16 @@ export default function Level3() {
   const [ vowelClicked, setVowelClicked ] = useState<boolean>(false);
   const [ vowelArray, setVowelArray ] = useState<string[]>([]);
   const [ targetLetterClicked, setTargetLetterClicked ] = useState<boolean>(false);
+  const [ leftPositions, setLeftPositions ] = useState<{ damma: number; kasra: number; fatha: number }>({ damma: 0, kasra: 0, fatha: 0 });
 
   useEffect(() => {
     if(vowelArray.find(vowel => vowel === VOWELS[0])) {
-      console.log('fatha found!')
       if(vowelArray.find(vowel => vowel === VOWELS[1])) {
-        console.log('kasra found!')
         if(vowelArray.find(vowel => vowel === VOWELS[2])) {
           // Filter out the current target letter from the array
           const updatedArray = letterArray.filter((letter) => targetLetter !== letter);
-          setLetterArray(updatedArray);   // Update letterArray
-          setVowelArray([]); // Empty array
-          console.log('Damma found. VowelArray emptied!')
+          setLetterArray(updatedArray);
+          setVowelArray([]);
         }
       }
     }
@@ -33,7 +31,6 @@ export default function Level3() {
     if (letterArray.length > 0) {
       setTargetLetter(letterArray[0]);  // Set to the first element of the updated array
     }
-    console.log('new targetletter!')
   }, [letterArray]);
 
   return (
@@ -44,13 +41,13 @@ export default function Level3() {
       </View>
       
       {/* Tashkeel Section */}
-      <View style={styles.scoreSection}>
-        <Tashkeel  targetLetterClicked={targetLetterClicked} setTargetLetterClicked={setTargetLetterClicked} vowelArray={vowelArray} setVowelArray={setVowelArray} clickedVowel={clickedVowel} setClickedVowel={setClickedVowel} vowelClicked={vowelClicked} setVowelClicked={setVowelClicked} />
+      <View style={styles.tashkeelSection}>
+        <Tashkeel setLeftPositions={setLeftPositions} targetLetterClicked={targetLetterClicked} vowelArray={vowelArray} setVowelArray={setVowelArray} clickedVowel={clickedVowel} setClickedVowel={setClickedVowel} setVowelClicked={setVowelClicked} />
       </View>
 
       {/* Game Section */}
       <View style={styles.gameSection}>
-        <GameSection3 vowelArray={vowelArray} setVowelArray={setVowelArray} targetLetterClicked={targetLetterClicked} setTargetLetterClicked={setTargetLetterClicked} targetLetter={targetLetter} letterArray={letterArray} clickedVowel={clickedVowel} vowelClicked={vowelClicked} setVowelClicked={setVowelClicked} />
+        <GameSection3 leftPositions={leftPositions} vowelArray={vowelArray} setVowelArray={setVowelArray} targetLetterClicked={targetLetterClicked} setTargetLetterClicked={setTargetLetterClicked} targetLetter={targetLetter} letterArray={letterArray} clickedVowel={clickedVowel} vowelClicked={vowelClicked} setVowelClicked={setVowelClicked} />
       </View>
 
     </View>
@@ -64,7 +61,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#2D2E32', // Dark theme background
   },
   targetSection: {
-    flex: 1,
+    flex: 2,
     backgroundColor: '#FFD700', // Bright gold background
     justifyContent: 'center',
     alignItems: 'center',
@@ -72,17 +69,17 @@ const styles = StyleSheet.create({
     borderColor: '#FFC107', // Lighter yellow border
     zIndex: 2,
   },
-  gameSection: {
-    flex: 5,
-    backgroundColor: '#2D2E32', // Keep game section dark
-  },
-  scoreSection: {
-    flex: 1,
+  tashkeelSection: {
+    flex: 0.5,
     backgroundColor: '#FFCDD2', // Light pink
     justifyContent: 'center',
     alignItems: 'center',
     borderTopWidth: 2,
     borderColor: '#E57373', // Light red border
+  },
+  gameSection: {
+    flex: 5,
+    backgroundColor: '#2D2E32', // Keep game section dark
   },
   button: {
     width: 100,

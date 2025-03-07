@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Animated, StyleSheet, Dimensions, TouchableWithoutFeedback } from 'react-native';
-import { generateRandomLetter } from '@/functions/GenerateRandomLetter';
+import { View, Text, Animated, StyleSheet, TouchableWithoutFeedback, ScrollView } from 'react-native';
 import { LETTERS, VOWELS } from '@/constants/LettersAndVowels';
 
 interface Props {
@@ -13,22 +12,25 @@ interface Props {
   targetLetter: string;
   targetLetterClicked: boolean;
   setTargetLetterClicked: React.Dispatch<React.SetStateAction<boolean>>;
+  leftPositions: {damma: number, kasra: number, fatha: number};
 }
 
 interface Ball {
-  id: number; // Unique identifier for each ball
-  height: number; // Individual animation for each ball
+  id: number;
+  height: number;
   scaleAnimation: Animated.Value;
-  left: number; // Horizontal position
-  letter: string; // Letter assigned to the ball
+  left: number;
+  letter: string;
+  vowel: string;
+  vowelTopPosition: number;
 }
 
 //CONSTANTS
-const { width, height } = Dimensions.get('window');
+const ballWidth = 70;
 
-export default function GameSection3({ vowelArray, setVowelArray, targetLetterClicked, setTargetLetterClicked, targetLetter, clickedVowel, vowelClicked, setVowelClicked, letterArray }: Props ) {
+export default function GameSection3({ leftPositions, vowelArray, setVowelArray, targetLetterClicked, setTargetLetterClicked, targetLetter, clickedVowel, vowelClicked, setVowelClicked, letterArray }: Props ) {
   const [balls, setBalls] = useState<Ball[]>([]);
-  
+
   useEffect(() => {
     if (vowelArray.length === 0) return; // Prevents running on initialization
     targetLetterClicked && vowelClicked ? spawnBall(): null;
@@ -37,22 +39,21 @@ export default function GameSection3({ vowelArray, setVowelArray, targetLetterCl
   const spawnBall = () => {
     const newBall: Ball = {
       id: Date.now(), // Unique ID based on timestamp
-      height: LETTERS.findIndex(letter => letterArray[0] === letter) * 50, // Start at the top of the screen
+      height: LETTERS.findIndex(letter => letterArray[0] === letter) * 100, // Start at the top of the screen
       scaleAnimation: new Animated.Value(1),
-      left: clickedVowel === VOWELS[0] ? width *3 / 4: clickedVowel === VOWELS[1] ? width * 2 / 4: width * 1 / 4 , // horizontal position
-      letter: targetLetter, // Random letter between A and D
+      left: clickedVowel === VOWELS[0] ? leftPositions.damma - ballWidth / 2: clickedVowel === VOWELS[1] ? leftPositions.kasra - ballWidth / 2: leftPositions.fatha - ballWidth / 2,
+      letter: targetLetter,
+      vowel: clickedVowel ? clickedVowel: '',
+      vowelTopPosition: clickedVowel === VOWELS[0] || clickedVowel === VOWELS[2] ? -1: 25,
     };
-    // console.log('ball height', newBall.height, 'left', newBall.left, 'height', height, 'width', width)
-
-    setBalls((prevBalls) => [...prevBalls, newBall]); // Add new ball to the state
+    setBalls((prevBalls) => [...prevBalls, newBall]);
     setTargetLetterClicked(false);
     setVowelClicked(false);
-
   };
 
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       {balls.map((ball) => (
         <Animated.View
           key={ball.id}
@@ -67,11 +68,18 @@ export default function GameSection3({ vowelArray, setVowelArray, targetLetterCl
           <TouchableWithoutFeedback>
             <View style={styles.ballInner}>
               <Text style={styles.letter}>{ball.letter}</Text>
+              <Text 
+                style={[
+                  styles.vowel,
+                  {
+                    top: ball.vowelTopPosition
+                  },
+                ]}>{ball.vowel}</Text> 
             </View>
           </TouchableWithoutFeedback>
         </Animated.View>
       ))}
-    </View>
+    </ScrollView>
   );
 };
 
@@ -79,18 +87,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#282c34',
+    marginTop: 10,
+    marginBottom: 10,
   },
   ball: {
     position: 'absolute',
-    width: 50,
-    height: 50,
-    backgroundColor: 'orange',
+    width: ballWidth,
+    height: ballWidth,
     borderRadius: 25,
     justifyContent: 'center',
     alignItems: 'center',
   },
   ballInner: {
-    backgroundColor: 'orange',
+    backgroundColor: '#145DA0',
     borderRadius: 25,
     width: '100%',
     height: '100%',
@@ -99,8 +108,21 @@ const styles = StyleSheet.create({
   },
   letter: {
     color: 'white',
-    fontSize: 24,
+    fontSize: 40,
     fontWeight: 'bold',
+    writingDirection: 'rtl',
+    textAlign: 'center',
+    fontFamily: 'Amiri',
+    lineHeight: 40,
+    height: 40,
+    textAlignVertical: 'center',
+
+  },
+  vowel: {
+    position: 'absolute',
+    fontSize: 40,
+    writingDirection: 'rtl',
+    color: 'white',
+    fontFamily: 'Amiri',
   },
 });
-
