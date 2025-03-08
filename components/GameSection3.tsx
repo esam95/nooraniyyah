@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Animated, StyleSheet, TouchableWithoutFeedback, ScrollView } from 'react-native';
 import { LETTERS, VOWELS } from '@/constants/LettersAndVowels';
+import { PlayLetterWithVowel } from '@/functions/playSound';
 
 interface Props {
   clickedVowel: string | null;
@@ -33,7 +34,7 @@ export default function GameSection3({ leftPositions, vowelArray, setVowelArray,
 
   useEffect(() => {
     if (vowelArray.length === 0) return; // Prevents running on initialization
-    targetLetterClicked && vowelClicked ? spawnBall(): null;
+    targetLetterClicked && vowelClicked ? setTimeout(() => { spawnBall() }, 1000): null;
   }, [vowelArray]);
 
   const spawnBall = () => {
@@ -49,6 +50,7 @@ export default function GameSection3({ leftPositions, vowelArray, setVowelArray,
     setBalls((prevBalls) => [...prevBalls, newBall]);
     setTargetLetterClicked(false);
     setVowelClicked(false);
+    PlayLetterWithVowel(targetLetter, clickedVowel);
   };
 
 
@@ -65,18 +67,16 @@ export default function GameSection3({ leftPositions, vowelArray, setVowelArray,
             },
           ]}
         >
-          <TouchableWithoutFeedback>
-            <View style={styles.ballInner}>
-              <Text style={styles.letter}>{ball.letter}</Text>
-              <Text 
-                style={[
-                  styles.vowel,
-                  {
-                    top: ball.vowelTopPosition
-                  },
-                ]}>{ball.vowel}</Text> 
-            </View>
-          </TouchableWithoutFeedback>
+          <View style={styles.ballInner}>
+            <Text style={styles.letter}>{ball.letter}</Text>
+            <Text 
+              style={[
+                styles.vowel,
+                {
+                  top: ball.vowelTopPosition
+                },
+              ]}>{ball.vowel}</Text> 
+          </View>
         </Animated.View>
       ))}
     </ScrollView>

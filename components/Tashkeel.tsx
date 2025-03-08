@@ -1,4 +1,5 @@
 import { VOWELS } from '@/constants/LettersAndVowels';
+import { PlayVowel } from '@/functions/playSound';
 import React, { useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 
@@ -42,7 +43,9 @@ export default function Tashkeel({ setLeftPositions, targetLetterClicked, clicke
         (
           setClickedVowel(newVowel),
           setVowelClicked(true), 
-          setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray)): null
+          setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
+          PlayVowel(newVowel)
+        ): null
         }}>
         <View style={styles.vowelContainer} ref={(ref) => (vowelRefs.current.damma = ref)}>
           <Text style={styles.vowelTextDamma} >{VOWELS[0]}</Text>
@@ -55,7 +58,9 @@ export default function Tashkeel({ setLeftPositions, targetLetterClicked, clicke
         (
           setClickedVowel(newVowel),
           setVowelClicked(true), 
-          setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray)): null
+          setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
+          PlayVowel(newVowel)
+        ): null
         }}>
         <View style={styles.vowelContainer} ref={(ref) => (vowelRefs.current.kasra = ref)}>
           <Text style={styles.vowelTextKasra}>{VOWELS[1]}</Text>
@@ -68,7 +73,9 @@ export default function Tashkeel({ setLeftPositions, targetLetterClicked, clicke
         (
           setClickedVowel(newVowel),
           setVowelClicked(true), 
-          setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray)): null
+          setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
+          PlayVowel(newVowel)
+        ): null
         }}>
         <View style={styles.vowelContainer} ref={(ref) => (vowelRefs.current.fatha = ref)}>
           <Text style={styles.vowelTextFatha}>{VOWELS[2]}</Text>

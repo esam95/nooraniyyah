@@ -10,7 +10,7 @@ export default function Layout() {
             backgroundColor: '#c6cbef',
             width: 240,
           },
-          drawerPosition: 'right',
+          drawerPosition: 'left',
         }}
       >
         <Drawer.Screen

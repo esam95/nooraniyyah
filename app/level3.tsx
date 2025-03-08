@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { LETTERS, VOWELS } from '@/constants/LettersAndVowels';
 import Tashkeel from '@/components/Tashkeel';
 import GameSection3 from '@/components/GameSection3';
@@ -13,6 +13,7 @@ export default function Level3() {
   const [ vowelArray, setVowelArray ] = useState<string[]>([]);
   const [ targetLetterClicked, setTargetLetterClicked ] = useState<boolean>(false);
   const [ leftPositions, setLeftPositions ] = useState<{ damma: number; kasra: number; fatha: number }>({ damma: 0, kasra: 0, fatha: 0 });
+  const [ isPlaying, setIsPlaying ] = useState(false);
 
   useEffect(() => {
     if(vowelArray.find(vowel => vowel === VOWELS[0])) {
@@ -34,7 +35,7 @@ export default function Level3() {
   }, [letterArray]);
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       {/* Target Letter Section */}
       <View style={styles.targetSection}>
         <TargetLetter3 targetLetter={targetLetter} targetLetterClicked={targetLetterClicked} letterArray={letterArray} setTargetLetterClicked={setTargetLetterClicked} />
@@ -50,7 +51,7 @@ export default function Level3() {
         <GameSection3 leftPositions={leftPositions} vowelArray={vowelArray} setVowelArray={setVowelArray} targetLetterClicked={targetLetterClicked} setTargetLetterClicked={setTargetLetterClicked} targetLetter={targetLetter} letterArray={letterArray} clickedVowel={clickedVowel} vowelClicked={vowelClicked} setVowelClicked={setVowelClicked} />
       </View>
 
-    </View>
+    </ScrollView>
   );
 }
 

@@ -1,4 +1,5 @@
 import { LETTERS } from '@/constants/LettersAndVowels';
+import { PlayLetter } from '@/functions/playSound';
 import React from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 
@@ -13,7 +14,7 @@ export default function TargetLetter3({ targetLetterClicked, letterArray, target
   return ( 
     <View style={styles.container}>
       {LETTERS.map((letter) => (
-        <TouchableWithoutFeedback key={letter} onPress={() => !targetLetterClicked && letter === targetLetter ? setTargetLetterClicked(true): null}>
+        <TouchableWithoutFeedback key={letter} onPress={() => (!targetLetterClicked && letter === targetLetter ? (setTargetLetterClicked(true), PlayLetter(targetLetter)): null)}>
           <View
             style={[
               styles.targetLetterContainer, 
