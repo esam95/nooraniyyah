@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Animated, StyleSheet, Dimensions, TouchableWithoutFeedback } from 'react-native';
 import { generateRandomLetter } from '@/functions/GenerateRandomLetter';
-import { PlaySound } from '@/functions/playSound';
+import { PlayLetter } from '@/functions/playSound';
 
 
 interface Props {
@@ -66,7 +66,7 @@ export default function GameSection({ targetLetter, score, setScore}: Props) {
   };
 
   const popBall = (clickedBall: Ball) => {
-    PlaySound(clickedBall.letter);
+    PlayLetter(clickedBall.letter);
     Animated.sequence([
       // Scale the ball up to 1.5x size
       Animated.timing(clickedBall.scaleAnimation, {
