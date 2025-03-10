@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Animated, StyleSheet, TouchableWithoutFeedback, ScrollView } from 'react-native';
+import { View, Text, Animated, StyleSheet, ScrollView } from 'react-native';
 import { LETTERS, VOWELS } from '@/constants/LettersAndVowels';
 import { PlayLetterWithVowel } from '@/functions/playSound';
+import {Dimensions} from 'react-native';
 
 interface Props {
   clickedVowel: string | null;
@@ -18,7 +19,6 @@ interface Props {
 
 interface Ball {
   id: number;
-  height: number;
   scaleAnimation: Animated.Value;
   left: number;
   letter: string;
@@ -27,6 +27,8 @@ interface Ball {
 }
 
 //CONSTANTS
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
 const ballWidth = 70;
 
 export default function GameSection3({ leftPositions, vowelArray, setVowelArray, targetLetterClicked, setTargetLetterClicked, targetLetter, clickedVowel, vowelClicked, setVowelClicked, letterArray }: Props ) {
@@ -40,12 +42,11 @@ export default function GameSection3({ leftPositions, vowelArray, setVowelArray,
   const spawnBall = () => {
     const newBall: Ball = {
       id: Date.now(), // Unique ID based on timestamp
-      height: LETTERS.findIndex(letter => letterArray[0] === letter) * 100, // Start at the top of the screen
       scaleAnimation: new Animated.Value(1),
       left: clickedVowel === VOWELS[0] ? leftPositions.damma - ballWidth / 2: clickedVowel === VOWELS[1] ? leftPositions.kasra - ballWidth / 2: leftPositions.fatha - ballWidth / 2,
       letter: targetLetter,
       vowel: clickedVowel ? clickedVowel: '',
-      vowelTopPosition: clickedVowel === VOWELS[0] || clickedVowel === VOWELS[2] ? -1: 25,
+      vowelTopPosition: clickedVowel === VOWELS[0] || clickedVowel === VOWELS[2] ? - 1: 25,
     };
     setBalls((prevBalls) => [...prevBalls, newBall]);
     setTargetLetterClicked(false);
@@ -58,12 +59,12 @@ export default function GameSection3({ leftPositions, vowelArray, setVowelArray,
     <ScrollView contentContainerStyle={styles.container}>
       {balls.map((ball) => (
         <Animated.View
-          key={ball.id}
+        key={ball.id}
           style={[
-            styles.ball,
+            styles.ballContainer,
             {
-              transform: [{ translateY: ball.height }, { scale: ball.scaleAnimation }],
-              left: ball.left,
+              transform: [{ scale: ball.scaleAnimation }],
+              width: screenWidth / 3,
             },
           ]}
         >
@@ -86,22 +87,24 @@ export default function GameSection3({ leftPositions, vowelArray, setVowelArray,
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'row-reverse',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-start',
+    alignContent: 'flex-start',
+    rowGap: screenHeight / 70,
     backgroundColor: '#282c34',
     marginTop: 10,
     marginBottom: 10,
   },
-  ball: {
-    position: 'absolute',
-    width: ballWidth,
+  ballContainer: {
     height: ballWidth,
-    borderRadius: 25,
     justifyContent: 'center',
     alignItems: 'center',
   },
   ballInner: {
     backgroundColor: '#145DA0',
     borderRadius: 25,
-    width: '100%',
+    width: ballWidth,
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',

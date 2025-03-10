@@ -91,7 +91,7 @@ container: {
   height: '100%',
   display: 'flex',
   flexDirection: 'row-reverse',
-  justifyContent: 'space-evenly',
+  justifyContent: 'space-around',
   alignItems: 'center'
 },
 vowelContainer: {
