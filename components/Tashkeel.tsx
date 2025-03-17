@@ -48,7 +48,7 @@ export default function Tashkeel({ setLeftPositions, targetLetterClicked, clicke
         ): null
         }}>
         <View style={styles.vowelContainer} ref={(ref) => (vowelRefs.current.damma = ref)}>
-          <Text style={styles.vowelTextDamma} >{VOWELS[0]}</Text>
+          <Text style={styles.vowelTextFatha} >{VOWELS[0]}</Text>
         </View>
       </TouchableWithoutFeedback>
 
@@ -78,7 +78,7 @@ export default function Tashkeel({ setLeftPositions, targetLetterClicked, clicke
         ): null
         }}>
         <View style={styles.vowelContainer} ref={(ref) => (vowelRefs.current.fatha = ref)}>
-          <Text style={styles.vowelTextFatha}>{VOWELS[2]}</Text>
+          <Text style={styles.vowelTextDamma}>{VOWELS[2]}</Text>
         </View>
       </TouchableWithoutFeedback>
     </View>  
