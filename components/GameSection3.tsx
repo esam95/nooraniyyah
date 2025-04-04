@@ -8,19 +8,15 @@ interface Props {
   clickedVowel: string | null;
   vowelClicked: boolean;
   setVowelClicked: React.Dispatch<React.SetStateAction<boolean>>;
-  letterArray: string[];
   vowelArray: string[];
-  setVowelArray: React.Dispatch<React.SetStateAction<string[]>>;
   targetLetter: string;
   targetLetterClicked: boolean;
   setTargetLetterClicked: React.Dispatch<React.SetStateAction<boolean>>;
-  leftPositions: {damma: number, kasra: number, fatha: number};
 }
 
 interface Ball {
   id: number;
   scaleAnimation: Animated.Value;
-  left: number;
   letter: string;
   vowel: string;
   vowelTopPosition: number;
@@ -31,7 +27,7 @@ const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 const ballWidth = 70;
 
-export default function GameSection3({ leftPositions, vowelArray, setVowelArray, targetLetterClicked, setTargetLetterClicked, targetLetter, clickedVowel, vowelClicked, setVowelClicked, letterArray }: Props ) {
+export default function GameSection3({ vowelArray, targetLetterClicked, setTargetLetterClicked, targetLetter, clickedVowel, vowelClicked, setVowelClicked }: Props ) {
   const [balls, setBalls] = useState<Ball[]>([]);
 
   useEffect(() => {
@@ -43,7 +39,6 @@ export default function GameSection3({ leftPositions, vowelArray, setVowelArray,
     const newBall: Ball = {
       id: Date.now(), // Unique ID based on timestamp
       scaleAnimation: new Animated.Value(1),
-      left: clickedVowel === VOWELS[0] ? leftPositions.damma - ballWidth / 2: clickedVowel === VOWELS[1] ? leftPositions.kasra - ballWidth / 2: leftPositions.fatha - ballWidth / 2,
       letter: targetLetter,
       vowel: clickedVowel ? clickedVowel: '',
       vowelTopPosition: clickedVowel === VOWELS[0] || clickedVowel === VOWELS[2] ? - 1: 25,

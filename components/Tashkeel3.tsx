@@ -1,39 +1,18 @@
 import { VOWELS } from '@/constants/LettersAndVowels';
 import { PlayVowel } from '@/functions/playSound';
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 
-type LeftPositionsType = {
-  damma: number;
-  kasra: number;
-  fatha: number;
-};
 interface Props {
-  clickedVowel: string | null;
   setClickedVowel: (clickedVowel: string) => void;
   setVowelClicked: (vowelClicked: boolean) => void;
-  vowelArray: string[];
   setVowelArray: React.Dispatch<React.SetStateAction<string[]>>;
   targetLetterClicked: boolean;
-  setLeftPositions: React.Dispatch<React.SetStateAction<LeftPositionsType>>;
 }
 
 const vowelContainerWidth = 45;
 
-export default function Tashkeel({ setLeftPositions, targetLetterClicked, clickedVowel, setClickedVowel, setVowelClicked, vowelArray, setVowelArray }: Props) {
-  const vowelRefs = useRef<{ damma: View | null; kasra: View | null; fatha: View | null }>({
-    damma: null,
-    kasra: null,
-    fatha: null,
-  });
-  
-  useEffect(() => {
-    setTimeout(() => {
-      vowelRefs.current.damma?.measureInWindow((x) => setLeftPositions((prevLeftPositions) => ({...prevLeftPositions, damma: x + vowelContainerWidth / 2})));
-      vowelRefs.current.kasra?.measureInWindow((x) => setLeftPositions((prevLeftPositions) => ({...prevLeftPositions, kasra: x + vowelContainerWidth / 2})));
-      vowelRefs.current.fatha?.measureInWindow((x) => setLeftPositions((prevLeftPositions) => ({...prevLeftPositions, fatha: x + vowelContainerWidth / 2})));
-    }, 0);
-  }, []);
+export default function Tashkeel3({ targetLetterClicked, setClickedVowel, setVowelClicked, setVowelArray }: Props) {
   
   return (
     <View style={styles.container}>
@@ -47,7 +26,7 @@ export default function Tashkeel({ setLeftPositions, targetLetterClicked, clicke
           PlayVowel(newVowel)
         ): null
         }}>
-        <View style={styles.vowelContainer} ref={(ref) => (vowelRefs.current.damma = ref)}>
+        <View style={styles.vowelContainer}>
           <Text style={styles.vowelTextFatha} >{VOWELS[0]}</Text>
         </View>
       </TouchableWithoutFeedback>
@@ -62,7 +41,7 @@ export default function Tashkeel({ setLeftPositions, targetLetterClicked, clicke
           PlayVowel(newVowel)
         ): null
         }}>
-        <View style={styles.vowelContainer} ref={(ref) => (vowelRefs.current.kasra = ref)}>
+        <View style={styles.vowelContainer}>
           <Text style={styles.vowelTextKasra}>{VOWELS[1]}</Text>
         </View>
       </TouchableWithoutFeedback>
@@ -77,7 +56,7 @@ export default function Tashkeel({ setLeftPositions, targetLetterClicked, clicke
           PlayVowel(newVowel)
         ): null
         }}>
-        <View style={styles.vowelContainer} ref={(ref) => (vowelRefs.current.fatha = ref)}>
+        <View style={styles.vowelContainer}>
           <Text style={styles.vowelTextDamma}>{VOWELS[2]}</Text>
         </View>
       </TouchableWithoutFeedback>
