@@ -36,17 +36,32 @@ export default function Level3() {
     <ScrollView contentContainerStyle={styles.container}>
       {/* Target Letter Section */}
       <View style={styles.targetSection}>
-        <TargetLetter3 targetLetter={targetLetter} targetLetterClicked={targetLetterClicked} letterArray={letterArray} setTargetLetterClicked={setTargetLetterClicked} />
+        <TargetLetter3 
+          targetLetter={targetLetter} 
+          targetLetterClicked={targetLetterClicked} 
+          letterArray={letterArray} 
+          setTargetLetterClicked={setTargetLetterClicked} />
       </View>
       
       {/* Tashkeel Section */}
       <View style={styles.tashkeelSection}>
-        <Tashkeel3 targetLetterClicked={targetLetterClicked} setVowelArray={setVowelArray} setClickedVowel={setClickedVowel} setVowelClicked={setVowelClicked} />
+        <Tashkeel3 
+          targetLetterClicked={targetLetterClicked} 
+          setVowelArray={setVowelArray} 
+          setClickedVowel={setClickedVowel} 
+          setVowelClicked={setVowelClicked} />
       </View>
 
       {/* Game Section */}
       <View style={styles.gameSection}>
-        <GameSection3 vowelArray={vowelArray} targetLetterClicked={targetLetterClicked} setTargetLetterClicked={setTargetLetterClicked} targetLetter={targetLetter} clickedVowel={clickedVowel} vowelClicked={vowelClicked} setVowelClicked={setVowelClicked} />
+        <GameSection3 
+          vowelArray={vowelArray} 
+            targetLetterClicked={targetLetterClicked} 
+            setTargetLetterClicked={setTargetLetterClicked} 
+            targetLetter={targetLetter} 
+            clickedVowel={clickedVowel} 
+            vowelClicked={vowelClicked} 
+            setVowelClicked={setVowelClicked} />
       </View>
 
     </ScrollView>

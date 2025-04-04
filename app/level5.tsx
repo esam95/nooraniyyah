@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { ScrollView, StyleSheet, View } from "react-native";
 import { LETTERS, VOWELS } from '@/constants/LettersAndVowels';
-import Tashkeel from '@/components/Tashkeel';
-import GameSection3 from '@/components/GameSection3';
-import TargetLetter3 from '@/components/TargetLetter3';
+import TargetLetter5 from '@/components/TargetLetter5';
+import Tashkeel5 from '@/components/Tashkeel5';
+import GameSection5 from '@/components/GameSection5';
 
 export default function Level5() {
   const [ letterArray, setLetterArray ] = useState<string[]>(LETTERS)
@@ -12,7 +12,6 @@ export default function Level5() {
   const [ vowelClicked, setVowelClicked ] = useState<boolean>(false);
   const [ vowelArray, setVowelArray ] = useState<string[]>([]);
   const [ targetLetterClicked, setTargetLetterClicked ] = useState<boolean>(false);
-  const [ leftPositions, setLeftPositions ] = useState<{ damma: number; kasra: number; fatha: number }>({ damma: 0, kasra: 0, fatha: 0 });
 
   useEffect(() => {
     if(vowelArray.find(vowel => vowel === VOWELS[0])) {
@@ -37,17 +36,32 @@ export default function Level5() {
     <ScrollView contentContainerStyle={styles.container}>
       {/* Target Letter Section */}
       <View style={styles.targetSection}>
-        <TargetLetter3 targetLetter={targetLetter} targetLetterClicked={targetLetterClicked} letterArray={letterArray} setTargetLetterClicked={setTargetLetterClicked} />
+        <TargetLetter5 
+          targetLetter={targetLetter} 
+          targetLetterClicked={targetLetterClicked} 
+          letterArray={letterArray} 
+          setTargetLetterClicked={setTargetLetterClicked} />
       </View>
       
       {/* Tashkeel Section */}
       <View style={styles.tashkeelSection}>
-        <Tashkeel setLeftPositions={setLeftPositions} targetLetterClicked={targetLetterClicked} vowelArray={vowelArray} setVowelArray={setVowelArray} clickedVowel={clickedVowel} setClickedVowel={setClickedVowel} setVowelClicked={setVowelClicked} />
+        <Tashkeel5
+          targetLetterClicked={targetLetterClicked} 
+          setVowelArray={setVowelArray} 
+          setClickedVowel={setClickedVowel} 
+          setVowelClicked={setVowelClicked} />
       </View>
 
       {/* Game Section */}
       <View style={styles.gameSection}>
-        <GameSection3 leftPositions={leftPositions} vowelArray={vowelArray} setVowelArray={setVowelArray} targetLetterClicked={targetLetterClicked} setTargetLetterClicked={setTargetLetterClicked} targetLetter={targetLetter} letterArray={letterArray} clickedVowel={clickedVowel} vowelClicked={vowelClicked} setVowelClicked={setVowelClicked} />
+        <GameSection5
+          vowelArray={vowelArray} 
+            targetLetterClicked={targetLetterClicked} 
+            setTargetLetterClicked={setTargetLetterClicked} 
+            targetLetter={targetLetter} 
+            clickedVowel={clickedVowel} 
+            vowelClicked={vowelClicked} 
+            setVowelClicked={setVowelClicked} />
       </View>
 
     </ScrollView>

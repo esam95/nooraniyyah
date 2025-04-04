@@ -3,14 +3,14 @@ import { PlayLetter } from '@/functions/playSound';
 import React from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 
-interface TargetLetterProps {
+interface Props {
   letterArray: string[];
   targetLetterClicked: boolean;
   targetLetter: string;
   setTargetLetterClicked: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function TargetLetter3({ targetLetterClicked, letterArray, targetLetter, setTargetLetterClicked }: TargetLetterProps) {
+export default function TargetLetter3({ targetLetterClicked, letterArray, targetLetter, setTargetLetterClicked }: Props) {
   return ( 
     <View style={styles.container}>
       {LETTERS.map((letter) => (
