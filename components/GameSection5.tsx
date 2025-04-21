@@ -41,7 +41,7 @@ export default function GameSection5({ vowelArray, targetLetterClicked, setTarge
       scaleAnimation: new Animated.Value(1),
       letter: targetLetter,
       vowel: clickedVowel ? clickedVowel: '',
-      vowelTopPosition: clickedVowel === VOWELS[0] || clickedVowel === VOWELS[2] ? - 1: 25,
+      vowelTopPosition: clickedVowel === VOWELS[0] || clickedVowel === VOWELS[2] || clickedVowel === VOWELS[3] || clickedVowel === VOWELS[5] ? - 1: 25,
     };
     setBalls((prevBalls) => [...prevBalls, newBall]);
     setTargetLetterClicked(false);

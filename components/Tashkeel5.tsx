@@ -17,7 +17,7 @@ export default function Tashkeel5({ targetLetterClicked, setClickedVowel, setVow
   return (
     <View style={styles.container}>
       <TouchableWithoutFeedback onPress={() => {
-        const newVowel = VOWELS[0];  
+        const newVowel = VOWELS[3];  
         targetLetterClicked ? 
         (
           setClickedVowel(newVowel),
@@ -27,12 +27,12 @@ export default function Tashkeel5({ targetLetterClicked, setClickedVowel, setVow
         ): null
         }}>
         <View style={styles.vowelContainer}>
-          <Text style={styles.vowelTextFatha} >{VOWELS[0]}</Text>
+          <Text style={styles.vowelTextFatha} >{VOWELS[3]}</Text>
         </View>
       </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback onPress={() => {
-        const newVowel = VOWELS[1]; 
+        const newVowel = VOWELS[4]; 
         targetLetterClicked ? 
         (
           setClickedVowel(newVowel),
@@ -42,12 +42,12 @@ export default function Tashkeel5({ targetLetterClicked, setClickedVowel, setVow
         ): null
         }}>
         <View style={styles.vowelContainer}>
-          <Text style={styles.vowelTextKasra}>{VOWELS[1]}</Text>
+          <Text style={styles.vowelTextKasra}>{VOWELS[4]}</Text>
         </View>
       </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback onPress={() => {
-        const newVowel = VOWELS[2]; 
+        const newVowel = VOWELS[5]; 
         targetLetterClicked ? 
         (
           setClickedVowel(newVowel),
@@ -57,7 +57,7 @@ export default function Tashkeel5({ targetLetterClicked, setClickedVowel, setVow
         ): null
         }}>
         <View style={styles.vowelContainer}>
-          <Text style={styles.vowelTextDamma}>{VOWELS[2]}</Text>
+          <Text style={styles.vowelTextDamma}>{VOWELS[5]}</Text>
         </View>
       </TouchableWithoutFeedback>
     </View>  

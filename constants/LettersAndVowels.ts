@@ -8,7 +8,7 @@ export const LETTERS =
 
 export const VOWELS = 
   [
-    ' َ', ' ِ', ' ُ',
+    ' َ', ' ِ', ' ُ', ' ً', ' ٍ', ' ٌ'
   ];
 
 export const LETTERWITHVOWELS = [

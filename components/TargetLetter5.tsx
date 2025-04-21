@@ -14,7 +14,10 @@ export default function TargetLetter5({ targetLetterClicked, letterArray, target
   return ( 
     <View style={styles.container}>
       {LETTERS.map((letter) => (
-        <TouchableWithoutFeedback key={letter} onPress={() => (!targetLetterClicked && letter === targetLetter ? (setTargetLetterClicked(true), PlayLetter(targetLetter)): null)}>
+        <TouchableWithoutFeedback 
+          key={letter} 
+          onPress={() => (!targetLetterClicked && letter === targetLetter ? (setTargetLetterClicked(true), PlayLetter(targetLetter)): null)}
+        >
           <View
             style={[
               styles.targetLetterContainer, 
