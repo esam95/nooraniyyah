@@ -55,7 +55,7 @@ export async function PlayVowel({ letterOrVowel, setIsPlaying }: Props) {
     const file = 
     letterOrVowel === VOWELS[0] ? require('../assets/fatha.mp3'): 
     letterOrVowel === VOWELS[1] ? require('../assets/kasra.mp3'): 
-    letterOrVowel === VOWELS[2] ? require('../assets/kasra.mp3'): 
+    letterOrVowel === VOWELS[2] ? require('../assets/damma.mp3'): 
     letterOrVowel === VOWELS[3] ? require('../assets/fathateen.mp3'): 
     letterOrVowel === VOWELS[4] ? require('../assets/kasrateen.mp3'): 
     require('../assets/dammateen.mp3');

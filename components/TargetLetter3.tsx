@@ -3,18 +3,24 @@ import { PlayLetter } from '@/functions/playSound';
 import React from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 
-interface Props {
+interface TargetLetterProps {
   letterArray: string[];
   targetLetterClicked: boolean;
   targetLetter: string;
   setTargetLetterClicked: React.Dispatch<React.SetStateAction<boolean>>;
+  isPlaying: boolean;
+  setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function TargetLetter3({ targetLetterClicked, letterArray, targetLetter, setTargetLetterClicked }: Props) {
+export default function TargetLetter3({ targetLetterClicked, letterArray, targetLetter, setTargetLetterClicked, isPlaying, setIsPlaying }: TargetLetterProps) {
   return ( 
     <View style={styles.container}>
       {LETTERS.map((letter) => (
-        <TouchableWithoutFeedback key={letter} onPress={() => (!targetLetterClicked && letter === targetLetter ? (setTargetLetterClicked(true), PlayLetter(targetLetter)): null)}>
+        <TouchableWithoutFeedback 
+          key={letter}
+          disabled={isPlaying}
+          onPress={() => (!targetLetterClicked && letter === targetLetter ? (setTargetLetterClicked(true), PlayLetter({ letterOrVowel: targetLetter, setIsPlaying })): null)}
+        >
           <View
             style={[
               styles.targetLetterContainer, 

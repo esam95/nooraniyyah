@@ -12,7 +12,12 @@ export default function Level3() {
   const [ vowelClicked, setVowelClicked ] = useState<boolean>(false);
   const [ vowelArray, setVowelArray ] = useState<string[]>([]);
   const [ targetLetterClicked, setTargetLetterClicked ] = useState<boolean>(false);
+  const [ isPlaying, setIsPlaying ] = useState<boolean>(false);
 
+  useEffect(() => {
+    console.log('isPlaying', isPlaying)
+  }, [isPlaying]);
+  
   useEffect(() => {
     if(vowelArray.find(vowel => vowel === VOWELS[0])) {
       if(vowelArray.find(vowel => vowel === VOWELS[1])) {
@@ -40,7 +45,9 @@ export default function Level3() {
           targetLetter={targetLetter} 
           targetLetterClicked={targetLetterClicked} 
           letterArray={letterArray} 
-          setTargetLetterClicked={setTargetLetterClicked} />
+          setTargetLetterClicked={setTargetLetterClicked}
+          isPlaying={isPlaying}
+          setIsPlaying={setIsPlaying} />
       </View>
       
       {/* Tashkeel Section */}
@@ -49,7 +56,9 @@ export default function Level3() {
           targetLetterClicked={targetLetterClicked} 
           setVowelArray={setVowelArray} 
           setClickedVowel={setClickedVowel} 
-          setVowelClicked={setVowelClicked} />
+          setVowelClicked={setVowelClicked}
+          isPlaying={isPlaying}
+          setIsPlaying={setIsPlaying} />
       </View>
 
       {/* Game Section */}
@@ -61,7 +70,9 @@ export default function Level3() {
             targetLetter={targetLetter} 
             clickedVowel={clickedVowel} 
             vowelClicked={vowelClicked} 
-            setVowelClicked={setVowelClicked} />
+            setVowelClicked={setVowelClicked}
+            isPlaying={isPlaying} 
+            setIsPlaying={setIsPlaying} />
       </View>
 
     </ScrollView>

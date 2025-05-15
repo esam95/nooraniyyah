@@ -12,6 +12,8 @@ interface Props {
   targetLetter: string;
   targetLetterClicked: boolean;
   setTargetLetterClicked: React.Dispatch<React.SetStateAction<boolean>>;
+  isPlaying: boolean;
+  setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface Ball {
@@ -27,12 +29,21 @@ const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 const ballWidth = 70;
 
-export default function GameSection3({ vowelArray, targetLetterClicked, setTargetLetterClicked, targetLetter, clickedVowel, vowelClicked, setVowelClicked }: Props ) {
+export default function GameSection3({ 
+  vowelArray, 
+  targetLetterClicked, 
+  setTargetLetterClicked, 
+  targetLetter, 
+  clickedVowel, 
+  vowelClicked, 
+  setVowelClicked,
+  isPlaying,
+  setIsPlaying, }: Props ) {
   const [balls, setBalls] = useState<Ball[]>([]);
 
   useEffect(() => {
     if (vowelArray.length === 0) return; // Prevents running on initialization
-    targetLetterClicked && vowelClicked ? setTimeout(() => { spawnBall() }, 1000): null;
+    targetLetterClicked && vowelClicked ? setTimeout(() => { spawnBall() }, 2000): null;
   }, [vowelArray]);
 
   const spawnBall = () => {
@@ -46,7 +57,7 @@ export default function GameSection3({ vowelArray, targetLetterClicked, setTarge
     setBalls((prevBalls) => [...prevBalls, newBall]);
     setTargetLetterClicked(false);
     setVowelClicked(false);
-    PlayLetterWithVowel(targetLetter, clickedVowel);
+    PlayLetterWithVowel(targetLetter, clickedVowel, isPlaying, setIsPlaying);
   };
 
 

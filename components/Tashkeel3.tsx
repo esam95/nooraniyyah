@@ -8,56 +8,67 @@ interface Props {
   setVowelClicked: (vowelClicked: boolean) => void;
   setVowelArray: React.Dispatch<React.SetStateAction<string[]>>;
   targetLetterClicked: boolean;
+  isPlaying: boolean;
+  setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const vowelContainerWidth = 45;
 
-export default function Tashkeel3({ targetLetterClicked, setClickedVowel, setVowelClicked, setVowelArray }: Props) {
+export default function Tashkeel3({ targetLetterClicked, setClickedVowel, setVowelClicked, setVowelArray, isPlaying, setIsPlaying }: Props) {
   
   return (
     <View style={styles.container}>
-      <TouchableWithoutFeedback onPress={() => {
-        const newVowel = VOWELS[0];  
-        targetLetterClicked ? 
-        (
-          setClickedVowel(newVowel),
-          setVowelClicked(true), 
-          setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
-          PlayVowel(newVowel)
-        ): null
-        }}>
-        <View style={styles.vowelContainer}>
+      <TouchableWithoutFeedback 
+        disabled={isPlaying}
+        onPress={() => {
+          const newVowel = VOWELS[0];  
+          targetLetterClicked ? 
+          (
+            setClickedVowel(newVowel),
+            setVowelClicked(true), 
+            setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
+            PlayVowel({ letterOrVowel: newVowel, setIsPlaying })
+          ): null
+          }}
+        >
+        <View style={[styles.vowelContainer, { opacity: isPlaying ? 0.5 : 1 }]}>
           <Text style={styles.vowelTextFatha} >{VOWELS[0]}</Text>
         </View>
       </TouchableWithoutFeedback>
 
-      <TouchableWithoutFeedback onPress={() => {
-        const newVowel = VOWELS[1]; 
-        targetLetterClicked ? 
-        (
-          setClickedVowel(newVowel),
-          setVowelClicked(true), 
-          setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
-          PlayVowel(newVowel)
-        ): null
-        }}>
-        <View style={styles.vowelContainer}>
-          <Text style={styles.vowelTextKasra}>{VOWELS[1]}</Text>
+      <TouchableWithoutFeedback 
+        disabled={isPlaying}
+        onPress={() => {
+          const newVowel = VOWELS[1];  
+          targetLetterClicked ? 
+          (
+            setClickedVowel(newVowel),
+            setVowelClicked(true), 
+            setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
+            PlayVowel({ letterOrVowel: newVowel, setIsPlaying })
+          ): null
+          }}
+        >
+        <View style={[styles.vowelContainer, { opacity: isPlaying ? 0.5 : 1 }]}>
+          <Text style={styles.vowelTextKasra} >{VOWELS[1]}</Text>
         </View>
       </TouchableWithoutFeedback>
 
-      <TouchableWithoutFeedback onPress={() => {
-        const newVowel = VOWELS[2]; 
-        targetLetterClicked ? 
-        (
-          setClickedVowel(newVowel),
-          setVowelClicked(true), 
-          setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
-          PlayVowel(newVowel)
-        ): null
-        }}>
-        <View style={styles.vowelContainer}>
-          <Text style={styles.vowelTextDamma}>{VOWELS[2]}</Text>
+      <TouchableWithoutFeedback 
+        disabled={isPlaying}
+        onPress={() => {
+          const newVowel = VOWELS[2];  
+          targetLetterClicked ? 
+          (
+            setClickedVowel(newVowel),
+            setVowelClicked(true), 
+            setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
+            PlayVowel({ letterOrVowel: newVowel, setIsPlaying })
+          ): null
+          }}
+        >
+        <View style={[styles.vowelContainer, { opacity: isPlaying ? 0.5 : 1 }]}>
+          <Text style={styles.vowelTextDamma} >{VOWELS[2]}</Text>
         </View>
       </TouchableWithoutFeedback>
     </View>  

@@ -1,6 +1,6 @@
 import { LETTERS } from '@/constants/LettersAndVowels';
 import { PlayLetter } from '@/functions/playSound';
-import React, { MutableRefObject } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 
 interface TargetLetterProps {
