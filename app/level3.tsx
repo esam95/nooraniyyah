@@ -58,6 +58,7 @@ export default function Level3() {
           setVowelArray={setVowelArray} 
           setClickedVowel={setClickedVowel} 
           setVowelClicked={setVowelClicked}
+          isPlaying={isPlaying}
           setIsPlaying={setIsPlaying} />
       </View>
 

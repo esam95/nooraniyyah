@@ -1,142 +1,138 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, Animated, StyleSheet, Dimensions, TouchableWithoutFeedback } from 'react-native';
-import { generateRandomLetter } from '@/functions/GenerateRandomLetter';
-import { PlayLetter } from '@/functions/playSound';
-
+import React, { useState, useEffect, MutableRefObject } from 'react';
+import { View, Text, Animated, StyleSheet, ScrollView } from 'react-native';
+import { LETTERS, VOWELS } from '@/constants/LettersAndVowels';
+import { PlayLetterWithVowel } from '@/functions/playSound';
+import {Dimensions} from 'react-native';
 
 interface Props {
+  clickedVowel: string | null;
+  vowelClicked: boolean;
+  setVowelClicked: React.Dispatch<React.SetStateAction<boolean>>;
+  vowelArray: string[];
   targetLetter: string;
-  score: number;
-  setScore: (score: number) => void;
+  targetLetterClicked: boolean;
+  setTargetLetterClicked: React.Dispatch<React.SetStateAction<boolean>>;
+  isPlaying: boolean;
+  setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
 interface Ball {
-  id: number; // Unique identifier for each ball
-  fallingAnimation: Animated.Value; // Individual animation for each ball
+  id: number;
   scaleAnimation: Animated.Value;
-  opacityAnimation: Animated.Value;
-  left: number; // Horizontal position
-  letter: string; // Letter assigned to the ball
+  letter: string;
+  vowel: string;
+  vowelTopPosition: number;
 }
 
 //CONSTANTS
-const { width, height } = Dimensions.get('window');
-const BALL_SPEED = 100;
-const distanceToTravel = height; // From top (0) to bottom (screen height)
-const duration = (distanceToTravel / BALL_SPEED) * 1000; // Time = distance / speed (convert to ms)
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
+const ballWidth = 70;
 
-export default function GameSection4({ targetLetter, score, setScore }: Props) {
+export default function GameSection4({ 
+  vowelArray, 
+  targetLetterClicked, 
+  setTargetLetterClicked, 
+  targetLetter, 
+  clickedVowel, 
+  vowelClicked, 
+  setVowelClicked,
+  isPlaying,
+  setIsPlaying
+  }: Props ) {
   const [balls, setBalls] = useState<Ball[]>([]);
-  useEffect(() => {
-    // Spawn a new ball every xx seconds
-    const interval = setInterval(() => {
-      spawnBall();
-    }, 500);
 
-    return () => clearInterval(interval); // Clean up the interval when the component unmounts
-  }, []);
+  useEffect(() => {
+    if (vowelArray.length === 0) return; // Prevents running on initialization
+    targetLetterClicked && vowelClicked ? setTimeout(() => { spawnBall() }, 2000): null;
+  }, [vowelArray]);
 
   const spawnBall = () => {
     const newBall: Ball = {
       id: Date.now(), // Unique ID based on timestamp
-      fallingAnimation: new Animated.Value(-50), // Start at the top of the screen
       scaleAnimation: new Animated.Value(1),
-      opacityAnimation: new Animated.Value(1),
-      left: Math.random() * (width - 50), // Random horizontal position
-      letter: generateRandomLetter(), // Random letter between A and D
+      letter: targetLetter,
+      vowel: clickedVowel ? clickedVowel: '',
+      vowelTopPosition: clickedVowel === VOWELS[0] || clickedVowel === VOWELS[2] || clickedVowel === VOWELS[3] || clickedVowel === VOWELS[5] ? - 1: 25,
     };
-
-    setBalls((prevBalls) => [...prevBalls, newBall]); // Add new ball to the state
-    
-    // Animate the ball to fall down
-    Animated.timing(newBall.fallingAnimation, {
-      toValue: distanceToTravel, // Move to the bottom of the screen
-      duration: duration, // Falls over 5 seconds
-      useNativeDriver: true,
-    }).start(() => {
-      // Remove the ball once the animation is complete
-      setBalls((prevBalls) => prevBalls.filter((ball) => ball.id !== newBall.id));
-    });
+    setBalls((prevBalls) => [...prevBalls, newBall]);
+    setTargetLetterClicked(false);
+    setVowelClicked(false);
+    PlayLetterWithVowel(targetLetter, clickedVowel, isPlaying, setIsPlaying);
   };
 
-  const handlePress = (clickedBall: Ball) => {
-    if (clickedBall.letter === targetLetter) {
-      setScore(score + 5);
-      popBall(clickedBall);
-    }
-  };
-
-  const popBall = (clickedBall: Ball) => {
-    PlayLetter({ letterOrVowel: clickedBall.letter });
-    Animated.sequence([
-      // Scale the ball up to 1.5x size
-      Animated.timing(clickedBall.scaleAnimation, {
-        toValue: 1.5,
-        duration: 100, // Duration for scaling up
-        useNativeDriver: true,
-      }),
-      // Scale the ball back down to 0
-      Animated.timing(clickedBall.scaleAnimation, {
-        toValue: 0,
-        duration: 150, // Duration for shrinking down
-        useNativeDriver: true,
-      }),
-    ]).start(() => {
-      setBalls((prevBalls) => prevBalls.filter((ball) => ball.id !== clickedBall.id));
-    }
-    );
-  };
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       {balls.map((ball) => (
         <Animated.View
-          key={ball.id}
+        key={ball.id}
           style={[
-            styles.ball,
+            styles.ballContainer,
             {
-              transform: [{ translateY: ball.fallingAnimation }, { scale: ball.scaleAnimation }],
-              opacity: ball.opacityAnimation,
-              left: ball.left,
+              transform: [{ scale: ball.scaleAnimation }],
+              width: screenWidth / 3,
             },
           ]}
         >
-          <TouchableWithoutFeedback onPress={() => handlePress(ball)}>
-            <View style={styles.ballInner}>
-              <Text style={styles.letter}>{ball.letter}</Text>
-            </View>
-          </TouchableWithoutFeedback>
+          <View style={styles.ballInner}>
+            <Text style={styles.letter}>{ball.letter}</Text>
+            <Text 
+              style={[
+                styles.vowel,
+                {
+                  top: ball.vowelTopPosition
+                },
+              ]}>{ball.vowel}</Text> 
+          </View>
         </Animated.View>
       ))}
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'row-reverse',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-start',
+    alignContent: 'flex-start',
+    rowGap: screenHeight / 70,
     backgroundColor: '#282c34',
+    marginTop: 10,
+    marginBottom: 10,
   },
-  ball: {
-    position: 'absolute',
-    width: 50,
-    height: 50,
-    backgroundColor: 'orange',
-    borderRadius: 25,
+  ballContainer: {
+    height: ballWidth,
     justifyContent: 'center',
     alignItems: 'center',
   },
   ballInner: {
-    backgroundColor: 'orange',
+    backgroundColor: '#145DA0',
     borderRadius: 25,
-    width: '100%',
+    width: ballWidth,
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
   },
   letter: {
     color: 'white',
-    fontSize: 24,
+    fontSize: 40,
     fontWeight: 'bold',
+    writingDirection: 'rtl',
+    textAlign: 'center',
+    fontFamily: 'Amiri',
+    lineHeight: 40,
+    height: 40,
+    textAlignVertical: 'center',
+
+  },
+  vowel: {
+    position: 'absolute',
+    fontSize: 40,
+    writingDirection: 'rtl',
+    color: 'white',
+    fontFamily: 'Amiri',
   },
 });
-

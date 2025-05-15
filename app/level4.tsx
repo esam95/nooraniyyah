@@ -1,27 +1,36 @@
-import React, { useState, useRef, useEffect } from 'react';
-import GameSection4 from "@/components/GameSection4";
-import { StyleSheet, View, Button } from "react-native";
+import React, { useState, useEffect, useRef } from 'react';
+import { ScrollView, StyleSheet, View } from "react-native";
+import { LETTERS, VOWELS } from '@/constants/LettersAndVowels';
 import TargetLetter4 from '@/components/TargetLetter4';
-import Score from '@/components/Score';
-import { LETTERS } from '@/constants/LettersAndVowels';
+import Tashkeel4 from '@/components/Tashkeel4';
+import GameSection4 from '@/components/GameSection4';
 
 export default function Level4() {
-  const [letterArray, setLetterArray] = useState<string[]>(LETTERS)
+  const [ letterArray, setLetterArray ] = useState<string[]>(LETTERS)
   const [ targetLetter, setTargetLetter ] = useState<string>(letterArray[0]);
-  const [score, setScore] = useState<number>(0);
+  const [ clickedVowel, setClickedVowel ] = useState<string | null>(null);
+  const [ vowelClicked, setVowelClicked ] = useState<boolean>(false);
+  const [ vowelArray, setVowelArray ] = useState<string[]>([]);
+  const [ targetLetterClicked, setTargetLetterClicked ] = useState<boolean>(false);
+  const [ isPlaying, setIsPlaying ] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log('Score:', score);
-    
-    if (score === 10) {
-      // Filter out the current target letter from the array
-      const updatedArray = letterArray.filter((letter) => targetLetter !== letter);
-      setLetterArray(updatedArray);   // Update letterArray
-      setScore(0);                   // Reset score
+    console.log('isPlaying', isPlaying)
+  }, [isPlaying]);
+
+  useEffect(() => {
+    if(vowelArray.find(vowel => vowel === VOWELS[3])) {
+      if(vowelArray.find(vowel => vowel === VOWELS[4])) {
+        if(vowelArray.find(vowel => vowel === VOWELS[5])) {
+          // Filter out the current target letter from the array
+          const updatedArray = letterArray.filter((letter) => targetLetter !== letter);
+          setLetterArray(updatedArray);
+          setVowelArray([]);
+        }
+      }
     }
-  }, [score]);
-  
-  // New useEffect to update targetLetter when letterArray changes
+  }, [vowelArray])
+
   useEffect(() => {
     if (letterArray.length > 0) {
       setTargetLetter(letterArray[0]);  // Set to the first element of the updated array
@@ -29,22 +38,45 @@ export default function Level4() {
   }, [letterArray]);
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       {/* Target Letter Section */}
       <View style={styles.targetSection}>
-        <TargetLetter4 targetLetter={targetLetter} score={score} letterArray={letterArray} />
+        <TargetLetter4
+          targetLetter={targetLetter} 
+          targetLetterClicked={targetLetterClicked} 
+          letterArray={letterArray} 
+          setTargetLetterClicked={setTargetLetterClicked}
+          isPlaying={isPlaying} 
+          setIsPlaying={setIsPlaying}/>
       </View>
       
-      {/* Game Section */}
-      <View style={styles.gameSection}>
-        <GameSection4 targetLetter={targetLetter} score={score} setScore={setScore} />
+      {/* Tashkeel Section */}
+      <View style={styles.tashkeelSection}>
+        <Tashkeel4
+          targetLetterClicked={targetLetterClicked} 
+          vowelArray={vowelArray}
+          setVowelArray={setVowelArray} 
+          setClickedVowel={setClickedVowel} 
+          setVowelClicked={setVowelClicked}
+          isPlaying={isPlaying}
+          setIsPlaying={setIsPlaying}/>
       </View>
 
-      {/* Score Section */}
-      <View style={styles.scoreSection}>
-        <Score score={score} />
+      {/* Game Section */}
+      <View style={styles.gameSection}>
+        <GameSection4
+          vowelArray={vowelArray} 
+            targetLetterClicked={targetLetterClicked} 
+            setTargetLetterClicked={setTargetLetterClicked} 
+            targetLetter={targetLetter} 
+            clickedVowel={clickedVowel} 
+            vowelClicked={vowelClicked} 
+            setVowelClicked={setVowelClicked}
+            isPlaying={isPlaying} 
+            setIsPlaying={setIsPlaying}/>
       </View>
-    </View>
+
+    </ScrollView>
   );
 }
 
@@ -55,7 +87,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#2D2E32', // Dark theme background
   },
   targetSection: {
-    flex: 1,
+    flex: 2,
     backgroundColor: '#FFD700', // Bright gold background
     justifyContent: 'center',
     alignItems: 'center',
@@ -63,17 +95,17 @@ const styles = StyleSheet.create({
     borderColor: '#FFC107', // Lighter yellow border
     zIndex: 2,
   },
-  gameSection: {
-    flex: 5,
-    backgroundColor: '#2D2E32', // Keep game section dark
-  },
-  scoreSection: {
-    flex: 1,
+  tashkeelSection: {
+    flex: 0.5,
     backgroundColor: '#FFCDD2', // Light pink
     justifyContent: 'center',
     alignItems: 'center',
     borderTopWidth: 2,
     borderColor: '#E57373', // Light red border
+  },
+  gameSection: {
+    flex: 5,
+    backgroundColor: '#2D2E32', // Keep game section dark
   },
   button: {
     width: 100,
