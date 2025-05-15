@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import GameSection4 from "@/components/GameSection4";
 import { StyleSheet, View, Button } from "react-native";
-import { generateRandomLetter } from '@/functions/GenerateRandomLetter';
 import TargetLetter4 from '@/components/TargetLetter4';
 import Score from '@/components/Score';
 import { LETTERS } from '@/constants/LettersAndVowels';
