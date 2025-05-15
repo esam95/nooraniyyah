@@ -66,7 +66,7 @@ export default function GameSection({ targetLetter, score, setScore}: Props) {
   };
 
   const popBall = (clickedBall: Ball) => {
-    PlayLetter(clickedBall.letter);
+    PlayLetter({ letterOrVowel: clickedBall.letter });
     Animated.sequence([
       // Scale the ball up to 1.5x size
       Animated.timing(clickedBall.scaleAnimation, {
