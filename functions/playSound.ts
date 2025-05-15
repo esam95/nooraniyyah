@@ -1,4 +1,4 @@
-import { LETTERWITHVOWELS, VOWELS } from '@/constants/LettersAndVowels';
+import { LETTERWITHTANWEEN, LETTERWITHVOWELS, VOWELS } from '@/constants/LettersAndVowels';
 import LETTERSURI from '@/constants/Uri';
 import { Audio } from 'expo-av';
 const soundRef = { current: null as Audio.Sound | null };
@@ -98,6 +98,50 @@ export async function PlayLetterWithVowel(letter: string, vowel: string | null, 
       vowel === VOWELS[0] ? uriLetter?.fatha:
       vowel === VOWELS[1] ? uriLetter?.kasra:
       uriLetter?.dammah}.mp3`
+
+    console.log('Playing:', letter, vowel , uri);
+
+    // Load and play new sound
+    const { sound } = await Audio.Sound.createAsync(
+      { uri: uri },
+      { shouldPlay: true }
+    );
+    soundRef.current = sound;
+    setIsPlaying(true);
+
+    sound.setOnPlaybackStatusUpdate((status) => {
+      if (status.isLoaded && status.didJustFinish) {
+        setIsPlaying(false);
+        console.log('PlayLetterWithVowel did just finish')
+      }
+    });
+  } catch (error) {
+    console.error('Error playing sound:', error, letter);
+  }
+}
+
+export async function PlayLetterWithTanween(letter: string, vowel: string | null, isPlaying: boolean, setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>) {
+  try {
+    await new Promise((resolve) => {
+      const interval = setInterval(() => {
+        if (isPlaying === false) {
+          clearInterval(interval); // ✅ Stop checking
+          resolve(true);           // ✅ Resume execution
+        }
+      }, 200);
+    });
+
+    // ✅ This runs only after `isPlaying === false`
+    if (soundRef.current) {
+      await soundRef.current.unloadAsync();
+      soundRef.current = null;
+    }
+    
+    const uriLetter = LETTERWITHTANWEEN.find(object => object.letter === letter);
+    const uri = `https://mualim-alquran.com/wp-includes/audio/s1/l4_/004__silence_${
+      vowel === VOWELS[3] ? uriLetter?.fathateen:
+      vowel === VOWELS[4] ? uriLetter?.kasrateen:
+      uriLetter?.dammateen}.mp3`
 
     console.log('Playing:', letter, vowel , uri);
 

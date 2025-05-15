@@ -1,7 +1,7 @@
 import React, { useState, useEffect, MutableRefObject } from 'react';
 import { View, Text, Animated, StyleSheet, ScrollView } from 'react-native';
-import { LETTERS, VOWELS } from '@/constants/LettersAndVowels';
-import { PlayLetterWithVowel } from '@/functions/playSound';
+import {  VOWELS } from '@/constants/LettersAndVowels';
+import { PlayLetterWithTanween, PlayLetterWithVowel } from '@/functions/playSound';
 import {Dimensions} from 'react-native';
 
 interface Props {
@@ -58,7 +58,7 @@ export default function GameSection4({
     setBalls((prevBalls) => [...prevBalls, newBall]);
     setTargetLetterClicked(false);
     setVowelClicked(false);
-    PlayLetterWithVowel(targetLetter, clickedVowel, isPlaying, setIsPlaying);
+    PlayLetterWithTanween(targetLetter, clickedVowel, isPlaying, setIsPlaying);
   };
 
 

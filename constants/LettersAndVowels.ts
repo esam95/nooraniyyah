@@ -42,3 +42,35 @@ export const LETTERWITHVOWELS = [
     { letter: 'ء', fatha: '1', kasra: '2', dammah: '3' },
     { letter: 'ي', fatha: '31', kasra: '32', dammah: '33' }
 ];
+
+export const LETTERWITHTANWEEN = [
+    { letter: 'أ', fathateen: '82', kasrateen: '83', dammateen: '84' },
+    { letter: 'ب', fathateen: '4', kasrateen: '5', dammateen: '6' },
+    { letter: 'ت', fathateen: '31', kasrateen: '32', dammateen: '33' },
+    { letter: 'ث', fathateen: '13', kasrateen: '14', dammateen: '15' },
+    { letter: 'ج', fathateen: '58', kasrateen: '59', dammateen: '60' },
+    { letter: 'ح', fathateen: '73', kasrateen: '74', dammateen: '75' },
+    { letter: 'خ', fathateen: '67', kasrateen: '68', dammateen: '69' },
+    { letter: 'د', fathateen: '34', kasrateen: '35', dammateen: '36' },
+    { letter: 'ذ', fathateen: '16', kasrateen: '17', dammateen: '18' },
+    { letter: 'ر', fathateen: '40', kasrateen: '41', dammateen: '42' },
+    { letter: 'ز', fathateen: '22', kasrateen: '23', dammateen: '24' },
+    { letter: 'س', fathateen: '25', kasrateen: '26', dammateen: '27' },
+    { letter: 'ش', fathateen: '55', kasrateen: '56', dammateen: '57' },
+    { letter: 'ص', fathateen: '28', kasrateen: '29', dammateen: '30' },
+    { letter: 'ض', fathateen: '49', kasrateen: '50', dammateen: '51' },
+    { letter: 'ط', fathateen: '37', kasrateen: '38', dammateen: '39' },
+    { letter: 'ظ', fathateen: '19', kasrateen: '20', dammateen: '21' },
+    { letter: 'ع', fathateen: '76', kasrateen: '77', dammateen: '78' },
+    { letter: 'غ', fathateen: '70', kasrateen: '71', dammateen: '72' },
+    { letter: 'ف', fathateen: '10', kasrateen: '11', dammateen: '12' },
+    { letter: 'ق', fathateen: '64', kasrateen: '65', dammateen: '66' },
+    { letter: 'ك', fathateen: '61', kasrateen: '62', dammateen: '63' },
+    { letter: 'ل', fathateen: '46', kasrateen: '47', dammateen: '48' },
+    { letter: 'م', fathateen: '1', kasrateen: '2', dammateen: '3' },
+    { letter: 'ن', fathateen: '43', kasrateen: '44', dammateen: '45' },
+    { letter: 'ه', fathateen: '79', kasrateen: '80', dammateen: '81' },
+    { letter: 'و', fathateen: '7', kasrateen: '8', dammateen: '9' },
+    { letter: 'ء', fathateen: '82', kasrateen: '83', dammateen: '84' },
+    { letter: 'ي', fathateen: '52', kasrateen: '53', dammateen: '54' }
+];
