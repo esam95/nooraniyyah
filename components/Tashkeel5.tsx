@@ -1,6 +1,7 @@
 import { VOWELS } from '@/constants/LettersAndVowels';
+import { useAudio } from '@/context/AudioContext';
 import { PlayVowel } from '@/functions/playSound';
-import React from 'react';
+import React, { MutableRefObject } from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 
 interface Props {
@@ -8,56 +9,67 @@ interface Props {
   setVowelClicked: (vowelClicked: boolean) => void;
   setVowelArray: React.Dispatch<React.SetStateAction<string[]>>;
   targetLetterClicked: boolean;
+  isPlaying: boolean;
+  setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const vowelContainerWidth = 45;
 
-export default function Tashkeel5({ targetLetterClicked, setClickedVowel, setVowelClicked, setVowelArray }: Props) {
+export default function Tashkeel5({ targetLetterClicked, setClickedVowel, setVowelClicked, setVowelArray, isPlaying, setIsPlaying }: Props) {
   
   return (
     <View style={styles.container}>
-      <TouchableWithoutFeedback onPress={() => {
-        const newVowel = VOWELS[3];  
-        targetLetterClicked ? 
-        (
-          setClickedVowel(newVowel),
-          setVowelClicked(true), 
-          setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
-          PlayVowel(newVowel)
-        ): null
-        }}>
-        <View style={styles.vowelContainer}>
+      <TouchableWithoutFeedback 
+        disabled={isPlaying}
+        onPress={() => {
+          const newVowel = VOWELS[3];  
+          targetLetterClicked ? 
+          (
+            setClickedVowel(newVowel),
+            setVowelClicked(true), 
+            setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
+            PlayVowel({ letterOrVowel: newVowel, isPlaying, setIsPlaying })
+          ): null
+          }}
+        >
+        <View style={[styles.vowelContainer, { opacity: isPlaying ? 0.5 : 1 }]}>
           <Text style={styles.vowelTextFatha} >{VOWELS[3]}</Text>
         </View>
       </TouchableWithoutFeedback>
 
-      <TouchableWithoutFeedback onPress={() => {
-        const newVowel = VOWELS[4]; 
-        targetLetterClicked ? 
-        (
-          setClickedVowel(newVowel),
-          setVowelClicked(true), 
-          setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
-          PlayVowel(newVowel)
-        ): null
-        }}>
-        <View style={styles.vowelContainer}>
-          <Text style={styles.vowelTextKasra}>{VOWELS[4]}</Text>
+      <TouchableWithoutFeedback 
+        disabled={isPlaying}
+        onPress={() => {
+          const newVowel = VOWELS[4];  
+          targetLetterClicked ? 
+          (
+            setClickedVowel(newVowel),
+            setVowelClicked(true), 
+            setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
+            PlayVowel({ letterOrVowel: newVowel, isPlaying, setIsPlaying })
+          ): null
+          }}
+        >
+        <View style={[styles.vowelContainer, { opacity: isPlaying ? 0.5 : 1 }]}>
+          <Text style={styles.vowelTextKasra} >{VOWELS[4]}</Text>
         </View>
       </TouchableWithoutFeedback>
 
-      <TouchableWithoutFeedback onPress={() => {
-        const newVowel = VOWELS[5]; 
-        targetLetterClicked ? 
-        (
-          setClickedVowel(newVowel),
-          setVowelClicked(true), 
-          setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
-          PlayVowel(newVowel)
-        ): null
-        }}>
-        <View style={styles.vowelContainer}>
-          <Text style={styles.vowelTextDamma}>{VOWELS[5]}</Text>
+      <TouchableWithoutFeedback 
+        disabled={isPlaying}
+        onPress={() => {
+          const newVowel = VOWELS[5];  
+          targetLetterClicked ? 
+          (
+            setClickedVowel(newVowel),
+            setVowelClicked(true), 
+            setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
+            PlayVowel({ letterOrVowel: newVowel, isPlaying, setIsPlaying })
+          ): null
+          }}
+        >
+        <View style={[styles.vowelContainer, { opacity: isPlaying ? 0.5 : 1 }]}>
+          <Text style={styles.vowelTextDamma} >{VOWELS[5]}</Text>
         </View>
       </TouchableWithoutFeedback>
     </View>  

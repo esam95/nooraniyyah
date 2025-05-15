@@ -1,6 +1,6 @@
 import { LETTERS } from '@/constants/LettersAndVowels';
 import { PlayLetter } from '@/functions/playSound';
-import React from 'react';
+import React, { MutableRefObject } from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 
 interface TargetLetterProps {
@@ -8,15 +8,18 @@ interface TargetLetterProps {
   targetLetterClicked: boolean;
   targetLetter: string;
   setTargetLetterClicked: React.Dispatch<React.SetStateAction<boolean>>;
+  isPlaying: boolean;
+  setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function TargetLetter5({ targetLetterClicked, letterArray, targetLetter, setTargetLetterClicked }: TargetLetterProps) {
+export default function TargetLetter5({ targetLetterClicked, letterArray, targetLetter, setTargetLetterClicked, isPlaying, setIsPlaying }: TargetLetterProps) {
   return ( 
     <View style={styles.container}>
       {LETTERS.map((letter) => (
         <TouchableWithoutFeedback 
-          key={letter} 
-          onPress={() => (!targetLetterClicked && letter === targetLetter ? (setTargetLetterClicked(true), PlayLetter(targetLetter)): null)}
+          key={letter}
+          disabled={isPlaying}
+          onPress={() => (!targetLetterClicked && letter === targetLetter ? (setTargetLetterClicked(true), PlayLetter({ letterOrVowel: targetLetter, isPlaying, setIsPlaying })): null)}
         >
           <View
             style={[

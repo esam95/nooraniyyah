@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ScrollView, StyleSheet, View } from "react-native";
 import { LETTERS, VOWELS } from '@/constants/LettersAndVowels';
 import TargetLetter5 from '@/components/TargetLetter5';
@@ -12,6 +12,11 @@ export default function Level5() {
   const [ vowelClicked, setVowelClicked ] = useState<boolean>(false);
   const [ vowelArray, setVowelArray ] = useState<string[]>([]);
   const [ targetLetterClicked, setTargetLetterClicked ] = useState<boolean>(false);
+  const [ isPlaying, setIsPlaying ] = useState<boolean>(false);
+
+  useEffect(() => {
+    console.log('isPlaying', isPlaying)
+  }, [isPlaying]);
 
   useEffect(() => {
     if(vowelArray.find(vowel => vowel === VOWELS[3])) {
@@ -40,7 +45,9 @@ export default function Level5() {
           targetLetter={targetLetter} 
           targetLetterClicked={targetLetterClicked} 
           letterArray={letterArray} 
-          setTargetLetterClicked={setTargetLetterClicked} />
+          setTargetLetterClicked={setTargetLetterClicked}
+          isPlaying={isPlaying} 
+          setIsPlaying={setIsPlaying}/>
       </View>
       
       {/* Tashkeel Section */}
@@ -49,7 +56,9 @@ export default function Level5() {
           targetLetterClicked={targetLetterClicked} 
           setVowelArray={setVowelArray} 
           setClickedVowel={setClickedVowel} 
-          setVowelClicked={setVowelClicked} />
+          setVowelClicked={setVowelClicked}
+          isPlaying={isPlaying} 
+          setIsPlaying={setIsPlaying}/>
       </View>
 
       {/* Game Section */}
@@ -61,7 +70,9 @@ export default function Level5() {
             targetLetter={targetLetter} 
             clickedVowel={clickedVowel} 
             vowelClicked={vowelClicked} 
-            setVowelClicked={setVowelClicked} />
+            setVowelClicked={setVowelClicked}
+            isPlaying={isPlaying} 
+            setIsPlaying={setIsPlaying}/>
       </View>
 
     </ScrollView>
