@@ -1,5 +1,4 @@
 import { VOWELS } from '@/constants/LettersAndVowels';
-import { useAudio } from '@/context/AudioContext';
 import { PlayVowel } from '@/functions/playSound';
 import React, { MutableRefObject } from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
@@ -28,7 +27,7 @@ export default function Tashkeel5({ targetLetterClicked, setClickedVowel, setVow
             setClickedVowel(newVowel),
             setVowelClicked(true), 
             setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
-            PlayVowel({ letterOrVowel: newVowel, isPlaying, setIsPlaying })
+            PlayVowel({ letterOrVowel: newVowel, setIsPlaying })
           ): null
           }}
         >
@@ -46,7 +45,7 @@ export default function Tashkeel5({ targetLetterClicked, setClickedVowel, setVow
             setClickedVowel(newVowel),
             setVowelClicked(true), 
             setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
-            PlayVowel({ letterOrVowel: newVowel, isPlaying, setIsPlaying })
+            PlayVowel({ letterOrVowel: newVowel, setIsPlaying })
           ): null
           }}
         >
@@ -64,7 +63,7 @@ export default function Tashkeel5({ targetLetterClicked, setClickedVowel, setVow
             setClickedVowel(newVowel),
             setVowelClicked(true), 
             setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
-            PlayVowel({ letterOrVowel: newVowel, isPlaying, setIsPlaying })
+            PlayVowel({ letterOrVowel: newVowel, setIsPlaying })
           ): null
           }}
         >

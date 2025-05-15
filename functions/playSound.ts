@@ -5,12 +5,11 @@ const soundRef = { current: null as Audio.Sound | null };
 
 interface Props {
   letterOrVowel: string;
-  isPlaying: boolean;
-  setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsPlaying?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 
-export async function PlayLetter({ letterOrVowel, isPlaying, setIsPlaying }: Props) {
+export async function PlayLetter({ letterOrVowel, setIsPlaying }: Props) {
   try {
     // Unload any previously loaded sound
     if (soundRef.current) {
@@ -29,11 +28,11 @@ export async function PlayLetter({ letterOrVowel, isPlaying, setIsPlaying }: Pro
       { shouldPlay: true }
     );
     soundRef.current = sound;
-    setIsPlaying(true);
+    setIsPlaying?.(true);
 
     sound.setOnPlaybackStatusUpdate((status) => {
       if (status.isLoaded && status.didJustFinish) {
-        setIsPlaying(false);
+        setIsPlaying?.(false);
         console.log('PlayLetter did just finish')
       }
     });
@@ -42,7 +41,7 @@ export async function PlayLetter({ letterOrVowel, isPlaying, setIsPlaying }: Pro
   }
 }
 
-export async function PlayVowel({ letterOrVowel, isPlaying, setIsPlaying }: Props) {
+export async function PlayVowel({ letterOrVowel, setIsPlaying }: Props) {
   try {
     console.log('Playing:', letterOrVowel);
 
@@ -64,11 +63,11 @@ export async function PlayVowel({ letterOrVowel, isPlaying, setIsPlaying }: Prop
     // Load and play sound
     const { sound } = await Audio.Sound.createAsync(file, { shouldPlay: true });
     soundRef.current = sound;
-    setIsPlaying(true);
+    setIsPlaying?.(true);
 
     sound.setOnPlaybackStatusUpdate((status) => {
       if (status.isLoaded && status.didJustFinish) {
-        setIsPlaying(false);
+        setIsPlaying?.(false);
         console.log('PlayVowel did just finish')
       }
     });
