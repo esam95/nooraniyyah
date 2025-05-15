@@ -53,11 +53,11 @@ export default function Level3() {
       {/* Tashkeel Section */}
       <View style={styles.tashkeelSection}>
         <Tashkeel3 
-          targetLetterClicked={targetLetterClicked} 
+          targetLetterClicked={targetLetterClicked}
+          vowelArray={vowelArray} 
           setVowelArray={setVowelArray} 
           setClickedVowel={setClickedVowel} 
           setVowelClicked={setVowelClicked}
-          isPlaying={isPlaying}
           setIsPlaying={setIsPlaying} />
       </View>
 

@@ -1,29 +1,33 @@
 import { VOWELS } from '@/constants/LettersAndVowels';
+import { disableVowel1, disableVowel2, disableVowel3 } from '@/functions/disablingFunctions';
 import { PlayVowel } from '@/functions/playSound';
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 
 interface Props {
   setClickedVowel: (clickedVowel: string) => void;
   setVowelClicked: (vowelClicked: boolean) => void;
+  vowelArray: string[];
   setVowelArray: React.Dispatch<React.SetStateAction<string[]>>;
   targetLetterClicked: boolean;
-  isPlaying: boolean;
   setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const vowelContainerWidth = 45;
 
-export default function Tashkeel3({ targetLetterClicked, setClickedVowel, setVowelClicked, setVowelArray, isPlaying, setIsPlaying }: Props) {
-  
+export default function Tashkeel3({ targetLetterClicked, setClickedVowel, setVowelClicked, vowelArray, setVowelArray, setIsPlaying }: Props) {
+  const [ disabledPeriod, setDisabledPeriod ] = useState(false);
+
   return (
     <View style={styles.container}>
       <TouchableWithoutFeedback 
-        disabled={isPlaying}
+        disabled={disableVowel1(vowelArray, disabledPeriod)}
         onPress={() => {
           const newVowel = VOWELS[0];  
           targetLetterClicked ? 
           (
+            setDisabledPeriod(true),
+            setTimeout(function() { setDisabledPeriod(false)}, 4000),
             setClickedVowel(newVowel),
             setVowelClicked(true), 
             setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
@@ -31,17 +35,19 @@ export default function Tashkeel3({ targetLetterClicked, setClickedVowel, setVow
           ): null
           }}
         >
-        <View style={[styles.vowelContainer, { opacity: isPlaying ? 0.5 : 1 }]}>
+        <View style={[styles.vowelContainer, { opacity: disableVowel1(vowelArray, disabledPeriod) ? 0.5 : 1 }]}>
           <Text style={styles.vowelTextFatha} >{VOWELS[0]}</Text>
         </View>
       </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback 
-        disabled={isPlaying}
+        disabled={disableVowel2(vowelArray, disabledPeriod)}
         onPress={() => {
           const newVowel = VOWELS[1];  
           targetLetterClicked ? 
           (
+            setDisabledPeriod(true),
+            setTimeout(function() { setDisabledPeriod(false)}, 4000),
             setClickedVowel(newVowel),
             setVowelClicked(true), 
             setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
@@ -49,17 +55,19 @@ export default function Tashkeel3({ targetLetterClicked, setClickedVowel, setVow
           ): null
           }}
         >
-        <View style={[styles.vowelContainer, { opacity: isPlaying ? 0.5 : 1 }]}>
+        <View style={[styles.vowelContainer, { opacity: disableVowel2(vowelArray, disabledPeriod) ? 0.5 : 1 }]}>
           <Text style={styles.vowelTextKasra} >{VOWELS[1]}</Text>
         </View>
       </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback 
-        disabled={isPlaying}
+        disabled={disableVowel3(vowelArray, disabledPeriod)}
         onPress={() => {
           const newVowel = VOWELS[2];  
           targetLetterClicked ? 
           (
+            setDisabledPeriod(true),
+            setTimeout(function() { setDisabledPeriod(false)}, 4000),
             setClickedVowel(newVowel),
             setVowelClicked(true), 
             setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
@@ -67,7 +75,7 @@ export default function Tashkeel3({ targetLetterClicked, setClickedVowel, setVow
           ): null
           }}
         >
-        <View style={[styles.vowelContainer, { opacity: isPlaying ? 0.5 : 1 }]}>
+        <View style={[styles.vowelContainer, { opacity: disableVowel3(vowelArray, disabledPeriod) ? 0.5 : 1 }]}>
           <Text style={styles.vowelTextDamma} >{VOWELS[2]}</Text>
         </View>
       </TouchableWithoutFeedback>
