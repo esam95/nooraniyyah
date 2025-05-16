@@ -1,5 +1,5 @@
-import { LETTERS } from '@/constants/LettersAndVowels';
-import { PlayLetter } from '@/functions/playSound';
+import { LETTERS } from '@/constants/lettersVowels';
+import { PlayLetter } from '@/functions/PlaySound';
 import React from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 

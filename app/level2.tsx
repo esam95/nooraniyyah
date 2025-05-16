@@ -3,7 +3,7 @@ import GameSection2 from "@/components/GameSection2";
 import { StyleSheet, View, Button } from "react-native";
 import TargetLetter2 from '@/components/TargetLetter2';
 import Score from '@/components/Score';
-import { LETTERS } from '@/constants/LettersAndVowels';
+import { LETTERS } from '@/constants/lettersVowels';
 
 export default function Level2() {
   const [letterArray, setLetterArray] = useState<string[]>(LETTERS)

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ScrollView, StyleSheet, View } from "react-native";
-import { LETTERS, VOWELS } from '@/constants/LettersAndVowels';
+import { LETTERS, VOWELS } from '@/constants/lettersVowels';
 import GameSection3 from '@/components/GameSection3';
 import TargetLetter3 from '@/components/TargetLetter3';
 import Tashkeel3 from '@/components/Tashkeel3';

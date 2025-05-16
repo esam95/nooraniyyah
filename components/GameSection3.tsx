@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Animated, StyleSheet, ScrollView } from 'react-native';
-import { VOWELS } from '@/constants/LettersAndVowels';
-import { PlayLetterWithVowel } from '@/functions/playSound';
+import { VOWELS } from '@/constants/lettersVowels';
+import { PlayLetterWithVowel } from '@/functions/PlaySound';
 import { SCREEN_WIDTH, SCREEN_HEIGHT, BALL_WIDTH } from '@/constants/screenDimensions';
 
 interface Props {

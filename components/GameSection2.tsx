@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Animated, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { generateRandomLetter } from '@/functions/GenerateRandomLetter';
-import { PlayLetter } from '@/functions/playSound';
+import { PlayLetter } from '@/functions/PlaySound';
 import { SCREEN_WIDTH, SCREEN_HEIGHT } from '@/constants/screenDimensions';
 import { BALL_SPEED } from '@/constants/ballSpeed';
 

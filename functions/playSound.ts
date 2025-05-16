@@ -1,5 +1,5 @@
-import { LETTERWITHTANWEEN, LETTERWITHVOWELS, VOWELS } from '@/constants/LettersAndVowels';
-import LETTERSURI from '@/constants/Uri';
+import { LETTERWITHTANWEEN, LETTERWITHVOWELS, VOWELS } from '@/constants/lettersVowels';
+import LETTERSURI from '@/constants/uri';
 import { Audio } from 'expo-av';
 const soundRef = { current: null as Audio.Sound | null };
 

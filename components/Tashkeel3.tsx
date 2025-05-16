@@ -1,6 +1,6 @@
-import { VOWELS } from '@/constants/LettersAndVowels';
-import { disableFatha, disableKasra, disableDamma } from '@/functions/disablingFunctions';
-import { PlayVowel } from '@/functions/playSound';
+import { VOWELS } from '@/constants/lettersVowels';
+import { disableFatha, disableKasra, disableDamma } from '@/functions/DisablingFunctions';
+import { PlayVowel } from '@/functions/PlaySound';
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { VOWEL_CONTAINER_WIDTH } from '@/constants/screenDimensions';

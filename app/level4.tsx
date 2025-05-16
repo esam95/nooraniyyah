@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ScrollView, StyleSheet, View } from "react-native";
-import { LETTERS, VOWELS } from '@/constants/LettersAndVowels';
+import { LETTERS, VOWELS } from '@/constants/lettersVowels';
 import TargetLetter4 from '@/components/TargetLetter4';
 import Tashkeel4 from '@/components/Tashkeel4';
 import GameSection4 from '@/components/GameSection4';

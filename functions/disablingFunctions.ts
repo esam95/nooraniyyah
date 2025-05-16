@@ -1,4 +1,4 @@
-import { VOWELS } from '@/constants/LettersAndVowels';
+import { VOWELS } from '@/constants/lettersVowels';
 
 export function disableFatha (vowelArray: string[], disabledPeriod: boolean, isPlaying: boolean) {
     let disabled = false;

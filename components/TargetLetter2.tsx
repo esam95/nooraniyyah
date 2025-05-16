@@ -1,4 +1,4 @@
-import { LETTERS } from '@/constants/LettersAndVowels';
+import { LETTERS } from '@/constants/lettersVowels';
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
