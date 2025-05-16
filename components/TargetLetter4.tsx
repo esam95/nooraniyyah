@@ -19,7 +19,7 @@ export default function TargetLetter4({ targetLetterClicked, letterArray, target
         <TouchableWithoutFeedback 
           key={letter}
           disabled={isPlaying}
-          onPress={() => (!targetLetterClicked && letter === targetLetter ? (setTargetLetterClicked(true), PlayLetter({ letterOrVowel: targetLetter, setIsPlaying })): null)}
+          onPress={() => (!targetLetterClicked && letter === targetLetter ? (setTargetLetterClicked(true), PlayLetter(targetLetter)): null)}
         >
           <View
             style={[

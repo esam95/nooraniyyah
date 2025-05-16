@@ -3,23 +3,18 @@ import LETTERSURI from '@/constants/Uri';
 import { Audio } from 'expo-av';
 const soundRef = { current: null as Audio.Sound | null };
 
-interface Props {
-  letterOrVowel: string;
-  setIsPlaying?: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-
-export async function PlayLetter({ letterOrVowel, setIsPlaying }: Props) {
+export async function PlayLetter(letter: string, setIsPlaying?: React.Dispatch<React.SetStateAction<boolean>>) {
   try {
+    console.log('Playing:', letter);
+
     // Unload any previously loaded sound
     if (soundRef.current) {
       await soundRef.current.unloadAsync();
       soundRef.current = null;
     }
 
-    console.log('Playing:', letterOrVowel);
-
-    const uriLetter = LETTERSURI.find(element => element.letter === letterOrVowel)
+    //Find the letter's link
+    const uriLetter = LETTERSURI.find(element => element.letter === letter);
     const uri = `https://mualim-alquran.com/wp-includes/audio/s1/l1/001_silence_${uriLetter ? uriLetter.file: null}.mp3`;
 
     // Load and play new sound
@@ -30,6 +25,7 @@ export async function PlayLetter({ letterOrVowel, setIsPlaying }: Props) {
     soundRef.current = sound;
     setIsPlaying?.(true);
 
+    //Determine when sound has finished playing
     sound.setOnPlaybackStatusUpdate((status) => {
       if (status.isLoaded && status.didJustFinish) {
         setIsPlaying?.(false);
@@ -37,13 +33,13 @@ export async function PlayLetter({ letterOrVowel, setIsPlaying }: Props) {
       }
     });
   } catch (error) {
-    console.error('Error playing sound:', error, letterOrVowel);
+    console.error('Error playing sound:', error, letter);
   }
 }
 
-export async function PlayVowel({ letterOrVowel, setIsPlaying }: Props) {
+export async function PlayVowel(vowel: string, setIsPlaying: React.Dispatch<React.SetStateAction<boolean>> ) {
   try {
-    console.log('Playing:', letterOrVowel);
+    console.log('Playing:', vowel);
 
     // Unload any previously loaded sound
     if (soundRef.current) {
@@ -53,31 +49,36 @@ export async function PlayVowel({ letterOrVowel, setIsPlaying }: Props) {
 
     // Map Arabic vowels to sound filenames
     const file = 
-    letterOrVowel === VOWELS[0] ? require('../assets/fatha.mp3'): 
-    letterOrVowel === VOWELS[1] ? require('../assets/kasra.mp3'): 
-    letterOrVowel === VOWELS[2] ? require('../assets/damma.mp3'): 
-    letterOrVowel === VOWELS[3] ? require('../assets/fathateen.mp3'): 
-    letterOrVowel === VOWELS[4] ? require('../assets/kasrateen.mp3'): 
+    vowel === VOWELS[0] ? require('../assets/fatha.mp3'): 
+    vowel === VOWELS[1] ? require('../assets/kasra.mp3'): 
+    vowel === VOWELS[2] ? require('../assets/damma.mp3'): 
+    vowel === VOWELS[3] ? require('../assets/fathateen.mp3'): 
+    vowel === VOWELS[4] ? require('../assets/kasrateen.mp3'): 
     require('../assets/dammateen.mp3');
 
     // Load and play sound
-    const { sound } = await Audio.Sound.createAsync(file, { shouldPlay: true });
+    const { sound } = await Audio.Sound.createAsync(
+      file, 
+      { shouldPlay: true }
+    );
     soundRef.current = sound;
     setIsPlaying?.(true);
 
+    //Determine when sound has finished playing
     sound.setOnPlaybackStatusUpdate((status) => {
       if (status.isLoaded && status.didJustFinish) {
         setIsPlaying?.(false);
-        console.log('PlayVowel did just finish')
+        console.log('PlayVowel did just finish');
       }
     });
   } catch (error) {
-    console.error('Error playing sound:', error, letterOrVowel);
+    console.error('Error playing sound:', error, vowel);
   }
 }
 
 export async function PlayLetterWithVowel(letter: string, vowel: string | null, isPlaying: boolean, setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>) {
   try {
+    //Wait for current sound to finish playing
     await new Promise((resolve) => {
       const interval = setInterval(() => {
         if (isPlaying === false) {
@@ -87,12 +88,13 @@ export async function PlayLetterWithVowel(letter: string, vowel: string | null, 
       }, 200);
     });
 
-    // ✅ This runs only after `isPlaying === false`
+    // Unload any previously loaded sound
     if (soundRef.current) {
       await soundRef.current.unloadAsync();
       soundRef.current = null;
     }
     
+    //Find the letter's link
     const uriLetter = LETTERWITHVOWELS.find(object => object.letter === letter);
     const uri = `https://mualim-alquran.com/wp-includes/audio/s1/l4/004_silence_${
       vowel === VOWELS[0] ? uriLetter?.fatha:
@@ -109,10 +111,11 @@ export async function PlayLetterWithVowel(letter: string, vowel: string | null, 
     soundRef.current = sound;
     setIsPlaying(true);
 
+    //Determine when sound has finished playing
     sound.setOnPlaybackStatusUpdate((status) => {
       if (status.isLoaded && status.didJustFinish) {
         setIsPlaying(false);
-        console.log('PlayLetterWithVowel did just finish')
+        console.log('PlayLetterWithVowel did just finish');
       }
     });
   } catch (error) {
@@ -122,6 +125,7 @@ export async function PlayLetterWithVowel(letter: string, vowel: string | null, 
 
 export async function PlayLetterWithTanween(letter: string, vowel: string | null, isPlaying: boolean, setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>) {
   try {
+    //Wait for current sound to finish playing
     await new Promise((resolve) => {
       const interval = setInterval(() => {
         if (isPlaying === false) {
@@ -131,17 +135,18 @@ export async function PlayLetterWithTanween(letter: string, vowel: string | null
       }, 200);
     });
 
-    // ✅ This runs only after `isPlaying === false`
+    // Unload any previously loaded sound
     if (soundRef.current) {
       await soundRef.current.unloadAsync();
       soundRef.current = null;
     }
-    
+        
+    //Find the letter's link
     const uriLetter = LETTERWITHTANWEEN.find(object => object.letter === letter);
     const uri = `https://mualim-alquran.com/wp-includes/audio/s1/l4_/004__silence_${
-      vowel === VOWELS[3] ? uriLetter?.fathateen:
-      vowel === VOWELS[4] ? uriLetter?.kasrateen:
-      uriLetter?.dammateen}.mp3`
+    vowel === VOWELS[3] ? uriLetter?.fathateen:
+    vowel === VOWELS[4] ? uriLetter?.kasrateen:
+    uriLetter?.dammateen}.mp3`
 
     console.log('Playing:', letter, vowel , uri);
 
@@ -153,10 +158,11 @@ export async function PlayLetterWithTanween(letter: string, vowel: string | null
     soundRef.current = sound;
     setIsPlaying(true);
 
+    //Determine when sound has finished playing
     sound.setOnPlaybackStatusUpdate((status) => {
       if (status.isLoaded && status.didJustFinish) {
         setIsPlaying(false);
-        console.log('PlayLetterWithVowel did just finish')
+        console.log('PlayLetterWithVowel did just finish');
       }
     });
   } catch (error) {

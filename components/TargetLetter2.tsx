@@ -8,8 +8,7 @@ interface TargetLetterProps {
   letterArray: string[];
 }
 
-export default function TargetLetter2({ targetLetter, score, letterArray }: TargetLetterProps) {
-  console.log('targetLetter, letterArray', targetLetter, letterArray)
+export default function TargetLetter2({ letterArray }: TargetLetterProps) {
   return ( 
     <View style={styles.container}>
       {LETTERS.map((letter) => (

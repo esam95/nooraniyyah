@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Animated, StyleSheet, Dimensions, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, Animated, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { generateRandomLetter } from '@/functions/GenerateRandomLetter';
 import { PlayLetter } from '@/functions/playSound';
+import { SCREEN_WIDTH, SCREEN_HEIGHT } from '@/constants/screenDimensions';
+import { BALL_SPEED } from '@/constants/ballSpeed';
 
 
 interface Props {
@@ -19,9 +21,7 @@ interface Ball {
 }
 
 //CONSTANTS
-const { width, height } = Dimensions.get('window');
-const BALL_SPEED = 100;
-const distanceToTravel = height; // From top (0) to bottom (screen height)
+const distanceToTravel = SCREEN_HEIGHT; // From top (0) to bottom (screen height)
 const duration = (distanceToTravel / BALL_SPEED) * 1000; // Time = distance / speed (convert to ms)
 
 export default function GameSection2({ targetLetter, score, setScore }: Props) {
@@ -41,7 +41,7 @@ export default function GameSection2({ targetLetter, score, setScore }: Props) {
       fallingAnimation: new Animated.Value(-50), // Start at the top of the screen
       scaleAnimation: new Animated.Value(1),
       opacityAnimation: new Animated.Value(1),
-      left: Math.random() * (width - 50), // Random horizontal position
+      left: Math.random() * (SCREEN_WIDTH - 50), // Random horizontal position
       letter: generateRandomLetter(), // Random letter between A and D
     };
 
@@ -66,7 +66,7 @@ export default function GameSection2({ targetLetter, score, setScore }: Props) {
   };
 
   const popBall = (clickedBall: Ball) => {
-    PlayLetter({ letterOrVowel: clickedBall.letter });
+    PlayLetter(clickedBall.letter);
     Animated.sequence([
       // Scale the ball up to 1.5x size
       Animated.timing(clickedBall.scaleAnimation, {

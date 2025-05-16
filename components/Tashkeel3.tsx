@@ -3,6 +3,7 @@ import { disableFatha, disableKasra, disableDamma } from '@/functions/disablingF
 import { PlayVowel } from '@/functions/playSound';
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { VOWEL_CONTAINER_WIDTH } from '@/constants/screenDimensions';
 
 interface Props {
   setClickedVowel: (clickedVowel: string) => void;
@@ -13,8 +14,6 @@ interface Props {
   isPlaying: boolean;
   setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
-const vowelContainerWidth = 45;
 
 export default function Tashkeel3({ targetLetterClicked, setClickedVowel, setVowelClicked, vowelArray, setVowelArray, isPlaying, setIsPlaying }: Props) {
   const [ disabledPeriod, setDisabledPeriod ] = useState(false);
@@ -32,7 +31,7 @@ export default function Tashkeel3({ targetLetterClicked, setClickedVowel, setVow
             setClickedVowel(newVowel),
             setVowelClicked(true), 
             setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
-            PlayVowel({ letterOrVowel: newVowel, setIsPlaying })
+            PlayVowel(newVowel, setIsPlaying)
           ): null
           }}
         >
@@ -52,7 +51,7 @@ export default function Tashkeel3({ targetLetterClicked, setClickedVowel, setVow
             setClickedVowel(newVowel),
             setVowelClicked(true), 
             setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
-            PlayVowel({ letterOrVowel: newVowel, setIsPlaying })
+            PlayVowel(newVowel, setIsPlaying)
           ): null
           }}
         >
@@ -72,7 +71,7 @@ export default function Tashkeel3({ targetLetterClicked, setClickedVowel, setVow
             setClickedVowel(newVowel),
             setVowelClicked(true), 
             setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
-            PlayVowel({ letterOrVowel: newVowel, setIsPlaying })
+            PlayVowel(newVowel, setIsPlaying)
           ): null
           }}
         >
@@ -96,7 +95,7 @@ container: {
 vowelContainer: {
   backgroundColor: '#9C8F8F',
   borderRadius: 5,
-  width: vowelContainerWidth,
+  width: VOWEL_CONTAINER_WIDTH,
   height: 45,
   justifyContent: 'center',
   alignItems: 'center',

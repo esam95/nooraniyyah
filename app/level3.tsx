@@ -13,10 +13,6 @@ export default function Level3() {
   const [ vowelArray, setVowelArray ] = useState<string[]>([]);
   const [ targetLetterClicked, setTargetLetterClicked ] = useState<boolean>(false);
   const [ isPlaying, setIsPlaying ] = useState<boolean>(false);
-
-  useEffect(() => {
-    console.log('isPlaying', isPlaying)
-  }, [isPlaying]);
   
   useEffect(() => {
     if(vowelArray.find(vowel => vowel === VOWELS[0])) {

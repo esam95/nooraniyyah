@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ScrollView, StyleSheet, View } from "react-native";
 import { LETTERS, VOWELS } from '@/constants/LettersAndVowels';
 import TargetLetter4 from '@/components/TargetLetter4';
@@ -13,10 +13,6 @@ export default function Level4() {
   const [ vowelArray, setVowelArray ] = useState<string[]>([]);
   const [ targetLetterClicked, setTargetLetterClicked ] = useState<boolean>(false);
   const [ isPlaying, setIsPlaying ] = useState<boolean>(false);
-
-  useEffect(() => {
-    console.log('isPlaying', isPlaying)
-  }, [isPlaying]);
 
   useEffect(() => {
     if(vowelArray.find(vowel => vowel === VOWELS[3])) {

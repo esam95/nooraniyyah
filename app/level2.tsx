@@ -10,9 +10,7 @@ export default function Level2() {
   const [ targetLetter, setTargetLetter ] = useState<string>(letterArray[0]);
   const [score, setScore] = useState<number>(0);
 
-  useEffect(() => {
-    console.log('Score:', score);
-    
+  useEffect(() => {    
     if (score === 10) {
       // Filter out the current target letter from the array
       const updatedArray = letterArray.filter((letter) => targetLetter !== letter);

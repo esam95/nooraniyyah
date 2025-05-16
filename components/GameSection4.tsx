@@ -1,8 +1,8 @@
-import React, { useState, useEffect, MutableRefObject } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Animated, StyleSheet, ScrollView } from 'react-native';
 import {  VOWELS } from '@/constants/LettersAndVowels';
-import { PlayLetterWithTanween, PlayLetterWithVowel } from '@/functions/playSound';
-import {Dimensions} from 'react-native';
+import { PlayLetterWithTanween } from '@/functions/playSound';
+import { SCREEN_HEIGHT, SCREEN_WIDTH, BALL_WIDTH } from '@/constants/screenDimensions';
 
 interface Props {
   clickedVowel: string | null;
@@ -24,10 +24,6 @@ interface Ball {
   vowelTopPosition: number;
 }
 
-//CONSTANTS
-const screenWidth = Dimensions.get('window').width;
-const screenHeight = Dimensions.get('window').height;
-const ballWidth = 70;
 
 export default function GameSection4({ 
   vowelArray, 
@@ -71,7 +67,7 @@ export default function GameSection4({
             styles.ballContainer,
             {
               transform: [{ scale: ball.scaleAnimation }],
-              width: screenWidth / 3,
+              width: SCREEN_WIDTH / 3,
             },
           ]}
         >
@@ -98,20 +94,20 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'flex-start',
     alignContent: 'flex-start',
-    rowGap: screenHeight / 70,
+    rowGap: SCREEN_HEIGHT / 70,
     backgroundColor: '#282c34',
     marginTop: 10,
     marginBottom: 10,
   },
   ballContainer: {
-    height: ballWidth,
+    height: BALL_WIDTH,
     justifyContent: 'center',
     alignItems: 'center',
   },
   ballInner: {
     backgroundColor: '#145DA0',
     borderRadius: 25,
-    width: ballWidth,
+    width: BALL_WIDTH,
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import GameSection from "@/components/GameSection";
-import { StyleSheet, View, Button } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { generateRandomLetter } from '@/functions/GenerateRandomLetter';
 import TargetLetter from '@/components/TargetLetter';
 import Score from '@/components/Score';
