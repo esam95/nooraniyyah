@@ -14,35 +14,35 @@ export default function Layout() {
         }}
       >
         <Drawer.Screen
-          name="index" // This is the name of the page and must match the url from root
+          name="index"
           options={{
             drawerLabel: 'Level 1',
             title: 'Level 1',
           }}
         />
         <Drawer.Screen
-          name="level2" // This is the name of the page and must match the url from root
+          name="level2"
           options={{
             drawerLabel: 'Level 2',
             title: 'Level 2',
           }}
         />
         <Drawer.Screen
-          name="level3" // This is the name of the page and must match the url from root
+          name="level3"
           options={{
             drawerLabel: 'Level 3',
             title: 'Level 3',
           }}
         />
         <Drawer.Screen
-          name="level4" // This is the name of the page and must match the url from root
+          name="level4"
           options={{
             drawerLabel: 'Level 4',
             title: 'Level 4',
           }}
         />
         <Drawer.Screen
-          name="level5" // This is the name of the page and must match the url from root
+          name="level5"
           options={{
             drawerLabel: 'Level 5',
             title: 'Level 5',
