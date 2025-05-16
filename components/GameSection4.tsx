@@ -1,21 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Animated, StyleSheet, ScrollView } from 'react-native';
-import {  VOWELS } from '@/constants/lettersVowels';
+import { VOWELS } from '@/constants/lettersVowels';
 import { PlayLetterWithTanween } from '@/functions/PlaySound';
 import { SCREEN_HEIGHT, SCREEN_WIDTH, BALL_WIDTH } from '@/constants/screenDimensions';
 import { stationaryBall } from '@/types/ballTypes';
-
-interface Props {
-  clickedVowel: string | null;
-  vowelClicked: boolean;
-  setVowelClicked: React.Dispatch<React.SetStateAction<boolean>>;
-  vowelArray: string[];
-  targetLetter: string;
-  targetLetterClicked: boolean;
-  setTargetLetterClicked: React.Dispatch<React.SetStateAction<boolean>>;
-  isPlaying: boolean;
-  setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import { gameSectionProps } from '@/types/props';
 
 export default function GameSection4({ 
   vowelArray, 
@@ -27,7 +16,7 @@ export default function GameSection4({
   setVowelClicked,
   isPlaying,
   setIsPlaying
-  }: Props ) {
+  }: gameSectionProps ) {
   const [balls, setBalls] = useState<stationaryBall[]>([]);
 
   useEffect(() => {
@@ -48,7 +37,6 @@ export default function GameSection4({
     setVowelClicked(false);
     PlayLetterWithTanween(targetLetter, clickedVowel, isPlaying, setIsPlaying);
   };
-
 
   return (
     <ScrollView contentContainerStyle={styles.container}>

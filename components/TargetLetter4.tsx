@@ -1,18 +1,10 @@
 import { LETTERS } from '@/constants/lettersVowels';
 import { PlayLetter } from '@/functions/PlaySound';
+import { targetLetterProps } from '@/types/props';
 import React from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 
-interface TargetLetterProps {
-  letterArray: string[];
-  targetLetterClicked: boolean;
-  targetLetter: string;
-  setTargetLetterClicked: React.Dispatch<React.SetStateAction<boolean>>;
-  isPlaying: boolean;
-  setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-export default function TargetLetter4({ targetLetterClicked, letterArray, targetLetter, setTargetLetterClicked, isPlaying, setIsPlaying }: TargetLetterProps) {
+export default function TargetLetter4({ targetLetterClicked, letterArray, targetLetter, setTargetLetterClicked, isPlaying, setIsPlaying }: targetLetterProps) {
   return ( 
     <View style={styles.container}>
       {LETTERS.map((letter) => (

@@ -4,18 +4,7 @@ import { VOWELS } from '@/constants/lettersVowels';
 import { PlayLetterWithVowel } from '@/functions/PlaySound';
 import { SCREEN_WIDTH, SCREEN_HEIGHT, BALL_WIDTH } from '@/constants/screenDimensions';
 import { stationaryBall } from '@/types/ballTypes';
-
-interface Props {
-  clickedVowel: string | null;
-  vowelClicked: boolean;
-  setVowelClicked: React.Dispatch<React.SetStateAction<boolean>>;
-  vowelArray: string[];
-  targetLetter: string;
-  targetLetterClicked: boolean;
-  setTargetLetterClicked: React.Dispatch<React.SetStateAction<boolean>>;
-  isPlaying: boolean;
-  setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import { gameSectionProps } from '@/types/props';
 
 export default function GameSection3({ 
   vowelArray, 
@@ -26,7 +15,7 @@ export default function GameSection3({
   vowelClicked, 
   setVowelClicked,
   isPlaying,
-  setIsPlaying, }: Props ) {
+  setIsPlaying, }: gameSectionProps ) {
   const [balls, setBalls] = useState<stationaryBall[]>([]);
 
   useEffect(() => {
@@ -47,7 +36,6 @@ export default function GameSection3({
     setVowelClicked(false);
     PlayLetterWithVowel(targetLetter, clickedVowel, isPlaying, setIsPlaying);
   };
-
 
   return (
     <ScrollView contentContainerStyle={styles.container}>

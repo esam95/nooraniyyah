@@ -4,18 +4,17 @@ import { PlayVowel } from '@/functions/PlaySound';
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { VOWEL_CONTAINER_WIDTH } from '@/constants/screenDimensions';
+import { tashkeelProps } from '@/types/props';
 
-interface Props {
-  setClickedVowel: (clickedVowel: string) => void;
-  setVowelClicked: (vowelClicked: boolean) => void;
-  vowelArray: string[];
-  setVowelArray: React.Dispatch<React.SetStateAction<string[]>>;
-  targetLetterClicked: boolean;
-  isPlaying: boolean;
-  setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-export default function Tashkeel4({ targetLetterClicked, setClickedVowel, setVowelClicked, vowelArray, setVowelArray, isPlaying, setIsPlaying }: Props) {
+export default function Tashkeel4({ 
+  targetLetterClicked, 
+  setClickedVowel, 
+  setVowelClicked, 
+  vowelArray,
+  setVowelArray, 
+  isPlaying, 
+  setIsPlaying 
+  }: tashkeelProps) {
   const [ disabledPeriod, setDisabledPeriod ] = useState(false);
 
   return (
