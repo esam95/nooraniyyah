@@ -3,6 +3,7 @@ import { View, Text, Animated, StyleSheet, ScrollView } from 'react-native';
 import { VOWELS } from '@/constants/lettersVowels';
 import { PlayLetterWithVowel } from '@/functions/PlaySound';
 import { SCREEN_WIDTH, SCREEN_HEIGHT, BALL_WIDTH } from '@/constants/screenDimensions';
+import { stationaryBall } from '@/types/ballTypes';
 
 interface Props {
   clickedVowel: string | null;
@@ -16,14 +17,6 @@ interface Props {
   setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-interface Ball {
-  id: number;
-  scaleAnimation: Animated.Value;
-  letter: string;
-  vowel: string;
-  vowelTopPosition: number;
-}
-
 export default function GameSection3({ 
   vowelArray, 
   targetLetterClicked, 
@@ -34,7 +27,7 @@ export default function GameSection3({
   setVowelClicked,
   isPlaying,
   setIsPlaying, }: Props ) {
-  const [balls, setBalls] = useState<Ball[]>([]);
+  const [balls, setBalls] = useState<stationaryBall[]>([]);
 
   useEffect(() => {
     if (vowelArray.length === 0) return; // Prevents running on initialization
@@ -42,7 +35,7 @@ export default function GameSection3({
   }, [vowelArray]);
 
   const spawnBall = () => {
-    const newBall: Ball = {
+    const newBall: stationaryBall = {
       id: Date.now(), // Unique ID based on timestamp
       scaleAnimation: new Animated.Value(1),
       letter: targetLetter,

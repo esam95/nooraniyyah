@@ -4,19 +4,12 @@ import { generateRandomLetter } from '@/functions/GenerateRandomLetter';
 import { PlayLetter } from '@/functions/PlaySound';
 import { SCREEN_WIDTH, SCREEN_HEIGHT } from '@/constants/screenDimensions';
 import { BALL_SPEED } from '@/constants/ballSpeed';
+import { fallingBall } from '@/types/ballTypes';
 
 interface Props {
   targetLetter: string;
   score: number;
   setScore: (score: number) => void;
-}
-interface Ball {
-  id: number; // Unique identifier for each ball
-  fallingAnimation: Animated.Value; // Individual animation for each ball
-  scaleAnimation: Animated.Value;
-  opacityAnimation: Animated.Value;
-  left: number; // Horizontal position
-  letter: string; // Letter assigned to the ball
 }
 
 //CONSTANTS
@@ -24,7 +17,7 @@ const distanceToTravel = SCREEN_HEIGHT; // From top (0) to bottom (screen height
 const duration = (distanceToTravel / BALL_SPEED) * 1000; // Time = distance / speed (convert to ms)
 
 export default function GameSection({ targetLetter, score, setScore}: Props) {
-  const [balls, setBalls] = useState<Ball[]>([]);
+  const [balls, setBalls] = useState<fallingBall[]>([]);
   useEffect(() => {
     // Spawn a new ball every xx seconds
     const interval = setInterval(() => {
@@ -35,7 +28,7 @@ export default function GameSection({ targetLetter, score, setScore}: Props) {
   }, []);
 
   const spawnBall = () => {
-    const newBall: Ball = {
+    const newBall: fallingBall = {
       id: Date.now(), // Unique ID based on timestamp
       fallingAnimation: new Animated.Value(-50), // Start at the top of the screen
       scaleAnimation: new Animated.Value(1),
@@ -57,14 +50,14 @@ export default function GameSection({ targetLetter, score, setScore}: Props) {
     });
   };
 
-  const handlePress = (clickedBall: Ball) => {
+  const handlePress = (clickedBall: fallingBall) => {
     if (clickedBall.letter === targetLetter) {
       setScore(score + 5);
       popBall(clickedBall);
     }
   };
 
-  const popBall = (clickedBall: Ball) => {
+  const popBall = (clickedBall: fallingBall) => {
     PlayLetter(clickedBall.letter);
     Animated.sequence([
       // Scale the ball up to 1.5x size
