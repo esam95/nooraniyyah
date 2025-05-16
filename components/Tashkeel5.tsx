@@ -1,5 +1,5 @@
 import { VOWELS } from '@/constants/lettersVowels';
-import { disableDammateen, disableFathateen, disableKasrateen } from '@/functions/DisablingFunctions';
+import { disableDammateen, disableFathateen, disableKasrateen, disableDamma, disableFatha, disableKasra } from '@/functions/DisablingFunctions';
 import { PlayVowel } from '@/functions/PlaySound';
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
@@ -19,6 +19,66 @@ export default function Tashkeel5({
 
   return (
     <View style={styles.container}>
+      <TouchableWithoutFeedback 
+        disabled={disableFatha(vowelArray, disabledPeriod, isPlaying)}
+        onPress={() => {
+          const newVowel = VOWELS[0];  
+          targetLetterClicked ? 
+          (
+            setDisabledPeriod(true),
+            setTimeout(function() { setDisabledPeriod(false)}, 4000),
+            setClickedVowel(newVowel),
+            setVowelClicked(true), 
+            setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
+            PlayVowel(newVowel, setIsPlaying)
+          ): null
+          }}
+        >
+        <View style={[styles.vowelContainer, { opacity: disableFatha(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
+          <Text style={styles.vowelTextFatha} >{VOWELS[0]}</Text>
+        </View>
+      </TouchableWithoutFeedback>
+
+      <TouchableWithoutFeedback 
+        disabled={disableKasra(vowelArray, disabledPeriod, isPlaying)}
+        onPress={() => {
+          const newVowel = VOWELS[1];  
+          targetLetterClicked ? 
+          (
+            setDisabledPeriod(true),
+            setTimeout(function() { setDisabledPeriod(false)}, 4000),
+            setClickedVowel(newVowel),
+            setVowelClicked(true), 
+            setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
+            PlayVowel(newVowel, setIsPlaying)
+          ): null
+          }}
+        >
+        <View style={[styles.vowelContainer, { opacity: disableKasra(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
+          <Text style={styles.vowelTextKasra} >{VOWELS[1]}</Text>
+        </View>
+      </TouchableWithoutFeedback>
+
+      <TouchableWithoutFeedback 
+        disabled={disableDamma(vowelArray, disabledPeriod, isPlaying)}
+        onPress={() => {
+          const newVowel = VOWELS[2];  
+          targetLetterClicked ? 
+          (
+            setDisabledPeriod(true),
+            setTimeout(function() { setDisabledPeriod(false)}, 4000),
+            setClickedVowel(newVowel),
+            setVowelClicked(true), 
+            setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
+            PlayVowel(newVowel, setIsPlaying)
+          ): null
+          }}
+        >
+        <View style={[styles.vowelContainer, { opacity: disableDamma(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
+          <Text style={styles.vowelTextDamma} >{VOWELS[2]}</Text>
+        </View>
+      </TouchableWithoutFeedback>
+
       <TouchableWithoutFeedback 
         disabled={disableFathateen(vowelArray, disabledPeriod, isPlaying)}
         onPress={() => {
@@ -133,6 +193,38 @@ vowelTextDammateen: {
   writingDirection: 'rtl',
   fontFamily: 'Amiri',
   lineHeight: 65, 
+  textAlign: 'center', 
+  paddingTop: 10,
+},
+vowelTextDamma: {
+  height: '100%',
+  fontSize: 65,
+  fontWeight: 'bold',
+  color: '#B71C1C', 
+  writingDirection: 'rtl',
+  fontFamily: 'Amiri',
+  lineHeight: 65, 
+  textAlign: 'center', 
+  paddingTop: 10,
+},
+vowelTextKasra: {
+  height: '100%',
+  fontSize: 65,
+  fontWeight: 'bold',
+  color: '#B71C1C', 
+  writingDirection: 'rtl',
+  fontFamily: 'Amiri',
+  lineHeight: 25, 
+  textAlign: 'center', 
+},
+vowelTextFatha: {
+  height: '100%',
+  fontSize: 65,
+  fontWeight: 'bold',
+  color: '#B71C1C', 
+  writingDirection: 'rtl',
+  fontFamily: 'Amiri',
+  lineHeight: 65,
   textAlign: 'center', 
   paddingTop: 10,
 },
