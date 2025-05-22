@@ -63,3 +63,10 @@ export interface tashkeel5Props {
   setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
   currentCharIndex: number;
 }
+
+export interface VowelButtonProps {
+  vowel: string;
+  vowelStyle: object;
+  isDisabled: boolean;
+  onVowelPress: (vowel: string) => void;
+}
