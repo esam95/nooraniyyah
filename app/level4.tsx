@@ -15,9 +15,9 @@ export default function Level4() {
   const [ isPlaying, setIsPlaying ] = useState<boolean>(false);
 
   useEffect(() => {
-    if(vowelArray.find(vowel => vowel === VOWELS[3])) {
-      if(vowelArray.find(vowel => vowel === VOWELS[4])) {
-        if(vowelArray.find(vowel => vowel === VOWELS[5])) {
+    if(vowelArray.find(vowel => vowel === VOWELS.fathateen)) {
+      if(vowelArray.find(vowel => vowel === VOWELS.kasrateen)) {
+        if(vowelArray.find(vowel => vowel === VOWELS.dammateen)) {
           // Filter out the current target letter from the array
           const updatedArray = letterArray.filter((letter) => targetLetter !== letter);
           setLetterArray(updatedArray);

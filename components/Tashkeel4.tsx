@@ -22,7 +22,7 @@ export default function Tashkeel4({
       <TouchableWithoutFeedback 
         disabled={disableFathateen(vowelArray, disabledPeriod, isPlaying)}
         onPress={() => {
-          const newVowel = VOWELS[3];  
+          const newVowel = VOWELS.fathateen;  
           targetLetterClicked ? 
           (
             setDisabledPeriod(true),
@@ -35,14 +35,14 @@ export default function Tashkeel4({
           }}
         >
         <View style={[styles.vowelContainer, { opacity: disableFathateen(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextFathateen} >{VOWELS[3]}</Text>
+          <Text style={styles.vowelTextFathateen} >{VOWELS.fathateen}</Text>
         </View>
       </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback 
         disabled={disableKasrateen(vowelArray, disabledPeriod, isPlaying)}
         onPress={() => {
-          const newVowel = VOWELS[4];  
+          const newVowel = VOWELS.kasrateen;  
           targetLetterClicked ? 
           (
             setDisabledPeriod(true),
@@ -55,14 +55,14 @@ export default function Tashkeel4({
           }}
         >
         <View style={[styles.vowelContainer, { opacity: disableKasrateen(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextKasrateen} >{VOWELS[4]}</Text>
+          <Text style={styles.vowelTextKasrateen} >{VOWELS.kasrateen}</Text>
         </View>
       </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback 
         disabled={disableDammateen(vowelArray, disabledPeriod, isPlaying)}
         onPress={() => {
-          const newVowel = VOWELS[5];  
+          const newVowel = VOWELS.dammateen;  
           targetLetterClicked ? 
           (
             setDisabledPeriod(true),
@@ -75,7 +75,7 @@ export default function Tashkeel4({
           }}
         >
         <View style={[styles.vowelContainer, { opacity: disableDammateen(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextDammateen} >{VOWELS[5]}</Text>
+          <Text style={styles.vowelTextDammateen} >{VOWELS.dammateen}</Text>
         </View>
       </TouchableWithoutFeedback>
     </View>  
