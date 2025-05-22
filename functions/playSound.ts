@@ -49,11 +49,11 @@ export async function PlayVowel(vowel: string, setIsPlaying: React.Dispatch<Reac
 
     // Map Arabic vowels to sound filenames
     const file = 
-    vowel === VOWELS[0] ? require('../assets/fatha.mp3'): 
-    vowel === VOWELS[1] ? require('../assets/kasra.mp3'): 
-    vowel === VOWELS[2] ? require('../assets/damma.mp3'): 
-    vowel === VOWELS[3] ? require('../assets/fathateen.mp3'): 
-    vowel === VOWELS[4] ? require('../assets/kasrateen.mp3'): 
+    vowel === VOWELS.fatha ? require('../assets/fatha.mp3'): 
+    vowel === VOWELS.kasra ? require('../assets/kasra.mp3'): 
+    vowel === VOWELS.damma ? require('../assets/damma.mp3'): 
+    vowel === VOWELS.fathateen ? require('../assets/fathateen.mp3'): 
+    vowel === VOWELS.kasrateen ? require('../assets/kasrateen.mp3'): 
     require('../assets/dammateen.mp3');
 
     // Load and play sound
@@ -97,8 +97,8 @@ export async function PlayLetterWithVowel(letter: string, vowel: string | null, 
     //Find the letter's link
     const uriLetter = LETTERWITHVOWELS.find(object => object.letter === letter);
     const uri = `https://mualim-alquran.com/wp-includes/audio/s1/l4/004_silence_${
-      vowel === VOWELS[0] ? uriLetter?.fatha:
-      vowel === VOWELS[1] ? uriLetter?.kasra:
+      vowel === VOWELS.fatha ? uriLetter?.fatha:
+      vowel === VOWELS.kasra ? uriLetter?.kasra:
       uriLetter?.dammah}.mp3`
 
     console.log('Playing:', letter, vowel , uri);
@@ -144,8 +144,8 @@ export async function PlayLetterWithTanween(letter: string, vowel: string | null
     //Find the letter's link
     const uriLetter = LETTERWITHTANWEEN.find(object => object.letter === letter);
     const uri = `https://mualim-alquran.com/wp-includes/audio/s1/l4_/004__silence_${
-    vowel === VOWELS[3] ? uriLetter?.fathateen:
-    vowel === VOWELS[4] ? uriLetter?.kasrateen:
+    vowel === VOWELS.fathateen ? uriLetter?.fathateen:
+    vowel === VOWELS.kasrateen ? uriLetter?.kasrateen:
     uriLetter?.dammateen}.mp3`
 
     console.log('Playing:', letter, vowel , uri);

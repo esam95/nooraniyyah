@@ -2,13 +2,13 @@ import { VOWELS } from '@/constants/lettersVowels';
 
 export function disableFatha (vowelArray: string[], disabledPeriod: boolean, isPlaying: boolean) {
     let disabled = false;
-    vowelArray.find(vowel => vowel === VOWELS[0]) || disabledPeriod || isPlaying ? disabled = true: disabled = false;
+    vowelArray.find(vowel => vowel === VOWELS.fatha) || disabledPeriod || isPlaying ? disabled = true: disabled = false;
     return disabled;
   }
 
   export function disableKasra (vowelArray: string[], disabledPeriod: boolean, isPlaying: boolean) {
     let disabled = false;
-    if(vowelArray.find(vowel => vowel === VOWELS[0]) && !vowelArray.find(vowel => vowel === VOWELS[1]) && !disabledPeriod && !isPlaying){
+    if(vowelArray.find(vowel => vowel === VOWELS.fatha) && !vowelArray.find(vowel => vowel === VOWELS.kasra) && !disabledPeriod && !isPlaying){
       disabled = false;
     } else {
       disabled = true;
@@ -18,7 +18,7 @@ export function disableFatha (vowelArray: string[], disabledPeriod: boolean, isP
 
   export function disableDamma (vowelArray: string[], disabledPeriod: boolean, isPlaying: boolean) {
     let disabled = false;
-    if(vowelArray.find(vowel => vowel === VOWELS[0]) && vowelArray.find(vowel => vowel === VOWELS[1]) && !vowelArray.find(vowel => vowel === VOWELS[2]) &&!disabledPeriod && !isPlaying){
+    if(vowelArray.find(vowel => vowel === VOWELS.fatha) && vowelArray.find(vowel => vowel === VOWELS.kasra) && !vowelArray.find(vowel => vowel === VOWELS.damma) &&!disabledPeriod && !isPlaying){
       disabled = false;
     } else {
       disabled = true;
@@ -28,13 +28,13 @@ export function disableFatha (vowelArray: string[], disabledPeriod: boolean, isP
 
   export function disableFathateen (vowelArray: string[], disabledPeriod: boolean, isPlaying: boolean) {
     let disabled = false;
-    vowelArray.find(vowel => vowel === VOWELS[3]) || disabledPeriod || isPlaying ? disabled = true: disabled = false;
+    vowelArray.find(vowel => vowel === VOWELS.fathateen) || disabledPeriod || isPlaying ? disabled = true: disabled = false;
     return disabled;
   }
 
   export function disableKasrateen (vowelArray: string[], disabledPeriod: boolean, isPlaying: boolean) {
     let disabled = false;
-    if(vowelArray.find(vowel => vowel === VOWELS[3]) && !vowelArray.find(vowel => vowel === VOWELS[4]) && !disabledPeriod && !isPlaying){
+    if(vowelArray.find(vowel => vowel === VOWELS.fathateen) && !vowelArray.find(vowel => vowel === VOWELS.kasrateen) && !disabledPeriod && !isPlaying){
       disabled = false;
     } else {
       disabled = true;
@@ -44,7 +44,7 @@ export function disableFatha (vowelArray: string[], disabledPeriod: boolean, isP
 
   export function disableDammateen (vowelArray: string[], disabledPeriod: boolean, isPlaying: boolean) {
     let disabled = false;
-    if(vowelArray.find(vowel => vowel === VOWELS[3]) && vowelArray.find(vowel => vowel === VOWELS[4]) && !vowelArray.find(vowel => vowel === VOWELS[5]) &&!disabledPeriod && !isPlaying){
+    if(vowelArray.find(vowel => vowel === VOWELS.fathateen) && vowelArray.find(vowel => vowel === VOWELS.kasrateen) && !vowelArray.find(vowel => vowel === VOWELS.dammateen) &&!disabledPeriod && !isPlaying){
       disabled = false;
     } else {
       disabled = true;
