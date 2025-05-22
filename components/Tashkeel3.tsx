@@ -22,7 +22,7 @@ export default function Tashkeel3({
       <TouchableWithoutFeedback 
         disabled={disableFatha(vowelArray, disabledPeriod, isPlaying)}
         onPress={() => {
-          const newVowel = VOWELS[0];  
+          const newVowel = VOWELS.fatha;  
           targetLetterClicked ? 
           (
             setDisabledPeriod(true),
@@ -35,14 +35,14 @@ export default function Tashkeel3({
           }}
         >
         <View style={[styles.vowelContainer, { opacity: disableFatha(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextFatha} >{VOWELS[0]}</Text>
+          <Text style={styles.vowelTextFatha} >{VOWELS.fatha}</Text>
         </View>
       </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback 
         disabled={disableKasra(vowelArray, disabledPeriod, isPlaying)}
         onPress={() => {
-          const newVowel = VOWELS[1];  
+          const newVowel = VOWELS.kasra;  
           targetLetterClicked ? 
           (
             setDisabledPeriod(true),
@@ -55,14 +55,14 @@ export default function Tashkeel3({
           }}
         >
         <View style={[styles.vowelContainer, { opacity: disableKasra(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextKasra} >{VOWELS[1]}</Text>
+          <Text style={styles.vowelTextKasra} >{VOWELS.kasra}</Text>
         </View>
       </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback 
         disabled={disableDamma(vowelArray, disabledPeriod, isPlaying)}
         onPress={() => {
-          const newVowel = VOWELS[2];  
+          const newVowel = VOWELS.damma;  
           targetLetterClicked ? 
           (
             setDisabledPeriod(true),
@@ -75,7 +75,7 @@ export default function Tashkeel3({
           }}
         >
         <View style={[styles.vowelContainer, { opacity: disableDamma(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextDamma} >{VOWELS[2]}</Text>
+          <Text style={styles.vowelTextDamma} >{VOWELS.damma}</Text>
         </View>
       </TouchableWithoutFeedback>
     </View>  

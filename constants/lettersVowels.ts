@@ -6,13 +6,19 @@ export const LETTERS =
     'ك', 'ل', 'م', 'ن', 'ه', 'و', 'ء', 'ي'
   ];
 
-export const VOWELS = [
-  'َ', 'ِ', 'ُ', 'ً', 'ٍ', 'ٌ'
-];
-
-// export const VOWELSWITHOUTSPACE = [
-//  'َ', 'ِ', 'ُ', 'ً', 'ٍ', 'ٌ', 'ْ'
+// export const VOWELS = [
+//   'َ', 'ِ', 'ُ', 'ً', 'ٍ', 'ٌ'
 // ];
+
+export const VOWELS = {
+  fatha: 'َ',
+  kasra: 'ِ',
+  damma: 'ُ',
+  fathateen: 'ً',
+  kasrateen: 'ٍ',
+  dammateen: 'ٌ',
+}
+
 export const VOWELSWITHOUTSPACE = {
   fatha: 'َ',
   kasra: 'ِ',

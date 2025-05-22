@@ -43,6 +43,16 @@ export interface targetLetter5Props {
   currentCharIndex: number;
 }
 
+export interface tashkeelProps {
+  setClickedVowel: (clickedVowel: string) => void;
+  setVowelClicked: (vowelClicked: boolean) => void;
+  vowelArray: string[];
+  setVowelArray: React.Dispatch<React.SetStateAction<string[]>>;
+  targetLetterClicked: boolean;
+  isPlaying: boolean;
+  setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 export interface tashkeel5Props {
   setClickedVowel: (clickedVowel: string) => void;
   setVowelClicked: (vowelClicked: boolean) => void;

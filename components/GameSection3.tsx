@@ -29,7 +29,7 @@ export default function GameSection3({
       scaleAnimation: new Animated.Value(1),
       letter: targetLetter,
       vowel: clickedVowel ? clickedVowel: '',
-      vowelTopPosition: clickedVowel === VOWELS[0] || clickedVowel === VOWELS[2] ? - 1: 25,
+      vowelTopPosition: clickedVowel === VOWELS.fatha || clickedVowel === VOWELS.damma ? - 1: 25,
     };
     setBalls((prevBalls) => [...prevBalls, newBall]);
     setTargetLetterClicked(false);
