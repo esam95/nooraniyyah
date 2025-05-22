@@ -4,7 +4,8 @@ import { VOWELS } from '@/constants/lettersVowels';
 import { PlayLetterWithTanween } from '@/functions/PlaySound';
 import { SCREEN_HEIGHT, SCREEN_WIDTH, BALL_WIDTH } from '@/constants/screenDimensions';
 import { stationaryBall } from '@/types/ballTypes';
-import { gameSectionProps } from '@/types/props';
+import { gameSection5Props } from '@/types/props';
+import { WORDS } from '@/constants/words';
 
 export default function GameSection5({ 
   vowelArray, 
@@ -15,51 +16,23 @@ export default function GameSection5({
   vowelClicked, 
   setVowelClicked,
   isPlaying,
-  setIsPlaying
-  }: gameSectionProps ) {
-  const [balls, setBalls] = useState<stationaryBall[]>([]);
+  setIsPlaying,
+  wordIndex
+  }: gameSection5Props ) {
+  const [words, setWords] = useState<string[]>([]);
 
   useEffect(() => {
-    if (vowelArray.length === 0) return; // Prevents running on initialization
-    targetLetterClicked && vowelClicked ? setTimeout(() => { spawnBall() }, 2000): null;
-  }, [vowelArray]);
-
-  const spawnBall = () => {
-    const newBall: stationaryBall = {
-      id: Date.now(), // Unique ID based on timestamp
-      scaleAnimation: new Animated.Value(1),
-      letter: targetLetter,
-      vowel: clickedVowel ? clickedVowel: '',
-      vowelTopPosition: clickedVowel === VOWELS[0] || clickedVowel === VOWELS[2] || clickedVowel === VOWELS[3] || clickedVowel === VOWELS[5] ? - 1: 25,
-    };
-    setBalls((prevBalls) => [...prevBalls, newBall]);
-    setTargetLetterClicked(false);
-    setVowelClicked(false);
-    PlayLetterWithTanween(targetLetter, clickedVowel, isPlaying, setIsPlaying);
-  };
+    setWords((prevWords) => [...prevWords, WORDS[wordIndex]]);
+  }, [wordIndex]);
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {balls.map((ball) => (
+      {words.map((word) => (
         <Animated.View
-        key={ball.id}
-          style={[
-            styles.ballContainer,
-            {
-              transform: [{ scale: ball.scaleAnimation }],
-              width: SCREEN_WIDTH / 3,
-            },
-          ]}
+          key={word}
         >
           <View style={styles.ballInner}>
-            <Text style={styles.letter}>{ball.letter}</Text>
-            <Text 
-              style={[
-                styles.vowel,
-                {
-                  top: ball.vowelTopPosition
-                },
-              ]}>{ball.vowel}</Text> 
+            <Text style={styles.letter}>{word}</Text>
           </View>
         </Animated.View>
       ))}

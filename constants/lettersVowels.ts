@@ -6,10 +6,13 @@ export const LETTERS =
     'ك', 'ل', 'م', 'ن', 'ه', 'و', 'ء', 'ي'
   ];
 
-export const VOWELS = 
-  [
-    ' َ', ' ِ', ' ُ', ' ً', ' ٍ', ' ٌ'
-  ];
+export const VOWELS = [
+  'َ', 'ِ', 'ُ', 'ً', 'ٍ', 'ٌ'
+];
+
+export const VOWELSWITHOUTSPACE = [
+ 'َ', 'ِ', 'ُ', 'ً', 'ٍ', 'ٌ', 'ْ'
+];
 
 export const LETTERWITHVOWELS = [
     { letter: 'أ', fatha: '1', kasra: '2', dammah: '3' },

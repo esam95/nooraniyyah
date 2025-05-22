@@ -4,34 +4,72 @@ import { LETTERS, VOWELS } from '@/constants/lettersVowels';
 import TargetLetter5 from '@/components/TargetLetter5';
 import Tashkeel5 from '@/components/Tashkeel5';
 import GameSection5 from '@/components/GameSection5';
+import { WORDS } from '@/constants/words';
 
 export default function Level5() {
   const [ letterArray, setLetterArray ] = useState<string[]>(LETTERS)
   const [ targetLetter, setTargetLetter ] = useState<string>(letterArray[0]);
+  const [ clickedLetter, setClickedLetter ] = useState<string>('');
   const [ clickedVowel, setClickedVowel ] = useState<string | null>(null);
   const [ vowelClicked, setVowelClicked ] = useState<boolean>(false);
   const [ vowelArray, setVowelArray ] = useState<string[]>([]);
   const [ targetLetterClicked, setTargetLetterClicked ] = useState<boolean>(false);
   const [ isPlaying, setIsPlaying ] = useState<boolean>(false);
+  const [ currentCharIndex, setCurrentCharIndex ] = useState<number>(0);
+  const [ wordIndex, setWordIndex ] = useState<number>(0);
+  const infoObject = {
+    clickedLetter: clickedLetter,
+    clickedLetterCode: clickedLetter.charCodeAt(0),
+    clickedVowel: clickedVowel,
+    clickedVowelCode: clickedVowel?.charCodeAt(0),
+    currentCharIndex: currentCharIndex,
+    targetCharacter: WORDS[wordIndex].charAt(currentCharIndex),
+    targetCharacterCode: WORDS[wordIndex].charCodeAt(currentCharIndex)
+  }
 
   useEffect(() => {
-    if(vowelArray.find(vowel => vowel === VOWELS[3])) {
-      if(vowelArray.find(vowel => vowel === VOWELS[4])) {
-        if(vowelArray.find(vowel => vowel === VOWELS[5])) {
-          // Filter out the current target letter from the array
-          const updatedArray = letterArray.filter((letter) => targetLetter !== letter);
-          setLetterArray(updatedArray);
-          setVowelArray([]);
-        }
+    if(wordIndex !== WORDS.length) {
+      //If current character is alif or alif with vowel, then make the clicked letter into current character, if clicked letter is alif
+      (WORDS[wordIndex].charAt(currentCharIndex) === "أ" 
+      || WORDS[wordIndex].charAt(currentCharIndex) === "إ" 
+      || WORDS[wordIndex].charAt(currentCharIndex) === "ا") 
+      && clickedLetter === LETTERS[0] ?
+      (
+        setClickedLetter(WORDS[wordIndex].charAt(currentCharIndex)), 
+        console.log('Target character is alif, clickedLetter is alif', infoObject)
+      ): null;
+
+      //Check if we are on letter or vowel
+      if(currentCharIndex % 2 == 0) {
+        console.log('Target character is letter', infoObject);
+        //Did the target letter and the clicked letter match?
+        WORDS[wordIndex].charAt(currentCharIndex) === clickedLetter ? 
+        (
+          setCurrentCharIndex((prevCurrentCharIndex) => prevCurrentCharIndex + 1), 
+          console.log('Target char and clickedLetter are the same', infoObject), 
+          setClickedLetter('')
+        )
+        : null;
+      } else {
+        //Did the target vowel and the clicked vowel match?
+        console.log('Target character is vowel', infoObject);
+        WORDS[wordIndex].charAt(currentCharIndex) === clickedVowel ? 
+        (
+          setCurrentCharIndex((prevCurrentCharIndex) => prevCurrentCharIndex + 1), 
+          console.log('Target char and clickedVowel are the same', infoObject)
+          , setClickedVowel('')
+        )
+        : null;
       }
-    }
-  }, [vowelArray])
 
-  useEffect(() => {
-    if (letterArray.length > 0) {
-      setTargetLetter(letterArray[0]);  // Set to the first element of the updated array
+      //Check if we have reached end of string
+      WORDS[wordIndex].length === currentCharIndex ? 
+      (
+        setWordIndex((prevWordIndex) => prevWordIndex + 1),
+        setCurrentCharIndex(0)
+      ): null;
     }
-  }, [letterArray]);
+  }, [clickedLetter, clickedVowel])
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -43,7 +81,9 @@ export default function Level5() {
           letterArray={letterArray} 
           setTargetLetterClicked={setTargetLetterClicked}
           isPlaying={isPlaying} 
-          setIsPlaying={setIsPlaying}/>
+          setIsPlaying={setIsPlaying}
+          setClickedLetter={setClickedLetter}
+          currentCharIndex={currentCharIndex}/>
       </View>
       
       {/* Tashkeel Section */}
@@ -55,7 +95,8 @@ export default function Level5() {
           setClickedVowel={setClickedVowel} 
           setVowelClicked={setVowelClicked}
           isPlaying={isPlaying}
-          setIsPlaying={setIsPlaying}/>
+          setIsPlaying={setIsPlaying}
+          currentCharIndex={currentCharIndex}/>
       </View>
 
       {/* Game Section */}
@@ -69,7 +110,8 @@ export default function Level5() {
             vowelClicked={vowelClicked} 
             setVowelClicked={setVowelClicked}
             isPlaying={isPlaying} 
-            setIsPlaying={setIsPlaying}/>
+            setIsPlaying={setIsPlaying}
+            wordIndex={wordIndex}/>
       </View>
 
     </ScrollView>
