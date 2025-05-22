@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Animated, StyleSheet, ScrollView } from 'react-native';
-import { VOWELS } from '@/constants/lettersVowels';
-import { PlayLetterWithTanween } from '@/functions/PlaySound';
-import { SCREEN_HEIGHT, SCREEN_WIDTH, BALL_WIDTH } from '@/constants/screenDimensions';
-import { stationaryBall } from '@/types/ballTypes';
+import { SCREEN_HEIGHT, WORD_CONTAINER_WIDTH } from '@/constants/screenDimensions';
 import { gameSection5Props } from '@/types/props';
 import { WORDS } from '@/constants/words';
 
@@ -28,11 +25,9 @@ export default function GameSection5({
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {words.map((word) => (
-        <Animated.View
-          key={word}
-        >
-          <View style={styles.ballInner}>
-            <Text style={styles.letter}>{word}</Text>
+        <Animated.View key={word} style={styles.wordContainer}>
+          <View style={styles.wordInner}>
+            <Text style={styles.word}>{word}</Text>
           </View>
         </Animated.View>
       ))}
@@ -43,45 +38,32 @@ export default function GameSection5({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row-reverse',
-    flexWrap: 'wrap',
-    justifyContent: 'flex-start',
-    alignContent: 'flex-start',
+    flexDirection: 'column',
+    alignContent: 'center',
     rowGap: SCREEN_HEIGHT / 70,
     backgroundColor: '#282c34',
     marginTop: 10,
     marginBottom: 10,
   },
-  ballContainer: {
-    height: BALL_WIDTH,
+  wordContainer: {
+    height: WORD_CONTAINER_WIDTH / 2,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  ballInner: {
+  wordInner: {
     backgroundColor: '#145DA0',
-    borderRadius: 25,
-    width: BALL_WIDTH,
+    borderRadius: 15,
+    width: WORD_CONTAINER_WIDTH,
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  letter: {
+  word: {
     color: 'white',
-    fontSize: 40,
+    fontSize: 70,
     fontWeight: 'bold',
     writingDirection: 'rtl',
-    textAlign: 'center',
     fontFamily: 'Amiri',
-    lineHeight: 40,
-    height: 40,
-    textAlignVertical: 'center',
-
-  },
-  vowel: {
-    position: 'absolute',
-    fontSize: 40,
-    writingDirection: 'rtl',
-    color: 'white',
-    fontFamily: 'Amiri',
+    marginTop: 25,
   },
 });
