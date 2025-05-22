@@ -10,9 +10,18 @@ export const VOWELS = [
   'َ', 'ِ', 'ُ', 'ً', 'ٍ', 'ٌ'
 ];
 
-export const VOWELSWITHOUTSPACE = [
- 'َ', 'ِ', 'ُ', 'ً', 'ٍ', 'ٌ', 'ْ'
-];
+// export const VOWELSWITHOUTSPACE = [
+//  'َ', 'ِ', 'ُ', 'ً', 'ٍ', 'ٌ', 'ْ'
+// ];
+export const VOWELSWITHOUTSPACE = {
+  fatha: 'َ',
+  kasra: 'ِ',
+  damma: 'ُ',
+  fathateen: 'ً',
+  kasrateen: 'ٍ',
+  dammateen: 'ٌ',
+  sukoon: 'ْ',
+}
 
 export const LETTERWITHVOWELS = [
     { letter: 'أ', fatha: '1', kasra: '2', dammah: '3' },

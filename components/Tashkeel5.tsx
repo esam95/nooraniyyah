@@ -23,7 +23,7 @@ export default function Tashkeel5({
       <TouchableWithoutFeedback 
         disabled={/* disableFatha(vowelArray, disabledPeriod, isPlaying) */currentCharIndex % 2 == 0}
         onPress={() => {
-          const newVowel = VOWELSWITHOUTSPACE[0];  
+          const newVowel = VOWELSWITHOUTSPACE.fatha;  
           // targetLetterClicked ? 
           // (
             // setDisabledPeriod(true),
@@ -36,14 +36,14 @@ export default function Tashkeel5({
           }}
         >
         <View style={[styles.vowelContainer, { opacity: disableFatha(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextFatha} >{VOWELSWITHOUTSPACE[0]}</Text>
+          <Text style={styles.vowelTextFatha} >{VOWELSWITHOUTSPACE.fatha}</Text>
         </View>
       </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback 
         disabled={/* disableKasra(vowelArray, disabledPeriod, isPlaying) */currentCharIndex % 2 == 0}
         onPress={() => {
-          const newVowel = VOWELSWITHOUTSPACE[1];  
+          const newVowel = VOWELSWITHOUTSPACE.kasra;  
           // targetLetterClicked ? 
           // (
             // setDisabledPeriod(true),
@@ -56,14 +56,14 @@ export default function Tashkeel5({
           }}
         >
         <View style={[styles.vowelContainer, { opacity: disableKasra(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextKasra} >{VOWELSWITHOUTSPACE[1]}</Text>
+          <Text style={styles.vowelTextKasra} >{VOWELSWITHOUTSPACE.kasra}</Text>
         </View>
       </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback 
         disabled={/* disableDamma(vowelArray, disabledPeriod, isPlaying) */currentCharIndex % 2 == 0}
         onPress={() => {
-          const newVowel = VOWELSWITHOUTSPACE[2];  
+          const newVowel = VOWELSWITHOUTSPACE.damma;  
           // targetLetterClicked ? 
           // (
             // setDisabledPeriod(true),
@@ -76,14 +76,14 @@ export default function Tashkeel5({
           }}
         >
         <View style={[styles.vowelContainer, { opacity: disableDamma(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextDamma} >{VOWELSWITHOUTSPACE[2]}</Text>
+          <Text style={styles.vowelTextDamma} >{VOWELSWITHOUTSPACE.damma}</Text>
         </View>
       </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback 
         disabled={/* disableFathateen(vowelArray, disabledPeriod, isPlaying) */currentCharIndex % 2 == 0}
         onPress={() => {
-          const newVowel = VOWELSWITHOUTSPACE[3];  
+          const newVowel = VOWELSWITHOUTSPACE.fathateen;  
           // targetLetterClicked ? 
           // (
             // setDisabledPeriod(true),
@@ -96,14 +96,14 @@ export default function Tashkeel5({
           }}
         >
         <View style={[styles.vowelContainer, { opacity: disableFathateen(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextFathateen} >{VOWELSWITHOUTSPACE[3]}</Text>
+          <Text style={styles.vowelTextFathateen} >{VOWELSWITHOUTSPACE.fathateen}</Text>
         </View>
       </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback 
         disabled={/* disableKasrateen(vowelArray, disabledPeriod, isPlaying) */currentCharIndex % 2 == 0}
         onPress={() => {
-          const newVowel = VOWELSWITHOUTSPACE[4];  
+          const newVowel = VOWELSWITHOUTSPACE.kasrateen;  
           // targetLetterClicked ? 
           // (
             // setDisabledPeriod(true),
@@ -116,14 +116,14 @@ export default function Tashkeel5({
           }}
         >
         <View style={[styles.vowelContainer, { opacity: disableKasrateen(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextKasrateen} >{VOWELSWITHOUTSPACE[4]}</Text>
+          <Text style={styles.vowelTextKasrateen} >{VOWELSWITHOUTSPACE.kasrateen}</Text>
         </View>
       </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback 
         disabled={/* disableDammateen(vowelArray, disabledPeriod, isPlaying) */currentCharIndex % 2 == 0}
         onPress={() => {
-          const newVowel = VOWELSWITHOUTSPACE[5];  
+          const newVowel = VOWELSWITHOUTSPACE.dammateen;  
           // targetLetterClicked ? 
           // (
             // setDisabledPeriod(true),
@@ -136,14 +136,14 @@ export default function Tashkeel5({
           }}
         >
         <View style={[styles.vowelContainer, { opacity: disableDammateen(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextDammateen} >{VOWELSWITHOUTSPACE[5]}</Text>
+          <Text style={styles.vowelTextDammateen} >{VOWELSWITHOUTSPACE.dammateen}</Text>
         </View>
       </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback 
         disabled={/* disableDammateen(vowelArray, disabledPeriod, isPlaying) */currentCharIndex % 2 == 0}
         onPress={() => {
-          const newVowel = VOWELSWITHOUTSPACE[6];  
+          const newVowel = VOWELSWITHOUTSPACE.sukoon;  
           // targetLetterClicked ? 
           // (
             // setDisabledPeriod(true),
@@ -156,7 +156,7 @@ export default function Tashkeel5({
           }}
         >
         <View style={[styles.vowelContainer, { opacity: disableDammateen(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextDammateen} >{VOWELSWITHOUTSPACE[6]}</Text>
+          <Text style={styles.vowelTextDammateen} >{VOWELSWITHOUTSPACE.sukoon}</Text>
         </View>
       </TouchableWithoutFeedback>
     </View>  
