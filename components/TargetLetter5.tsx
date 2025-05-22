@@ -19,8 +19,8 @@ export default function TargetLetter5({
       {LETTERS.map((letter) => (
         <TouchableWithoutFeedback 
           key={letter}
-          disabled={currentCharIndex % 2 !== 0}
-          onPress={() => { setClickedLetter(letter)/* , PlayLetter(targetLetter, setIsPlaying) */}}>
+          disabled={currentCharIndex % 2 !== 0 || isPlaying}
+          onPress={() => { setClickedLetter(letter), PlayLetter(letter, setIsPlaying)}}>
           <View
             style={[
               styles.targetLetterContainer, 
