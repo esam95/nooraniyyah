@@ -1,4 +1,4 @@
-import { VOWELSWITHOUTSPACE } from '@/constants/lettersVowels';
+import { VOWELS, VOWELSWITHOUTSPACE } from '@/constants/lettersVowels';
 import { disableDammateen, disableFathateen, disableKasrateen, disableDamma, disableFatha, disableKasra } from '@/functions/DisablingFunctions';
 import { PlayVowel } from '@/functions/PlaySound';
 import React, { useState } from 'react';
@@ -36,7 +36,7 @@ export default function Tashkeel5({
           }}
         >
         <View style={[styles.vowelContainer, { opacity: disableFatha(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextFatha} >{VOWELSWITHOUTSPACE.fatha}</Text>
+          <Text style={styles.vowelTextFatha}>{VOWELS.fatha}</Text>
         </View>
       </TouchableWithoutFeedback>
 
@@ -56,7 +56,7 @@ export default function Tashkeel5({
           }}
         >
         <View style={[styles.vowelContainer, { opacity: disableKasra(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextKasra} >{VOWELSWITHOUTSPACE.kasra}</Text>
+          <Text style={styles.vowelTextKasra}>{VOWELS.kasra}</Text>
         </View>
       </TouchableWithoutFeedback>
 
@@ -76,7 +76,7 @@ export default function Tashkeel5({
           }}
         >
         <View style={[styles.vowelContainer, { opacity: disableDamma(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextDamma} >{VOWELSWITHOUTSPACE.damma}</Text>
+          <Text style={styles.vowelTextDamma}>{VOWELS.damma}</Text>
         </View>
       </TouchableWithoutFeedback>
 
@@ -96,7 +96,7 @@ export default function Tashkeel5({
           }}
         >
         <View style={[styles.vowelContainer, { opacity: disableFathateen(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextFathateen} >{VOWELSWITHOUTSPACE.fathateen}</Text>
+          <Text style={styles.vowelTextFathateen}>{VOWELS.fathateen}</Text>
         </View>
       </TouchableWithoutFeedback>
 
@@ -116,7 +116,7 @@ export default function Tashkeel5({
           }}
         >
         <View style={[styles.vowelContainer, { opacity: disableKasrateen(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextKasrateen} >{VOWELSWITHOUTSPACE.kasrateen}</Text>
+          <Text style={styles.vowelTextKasrateen}>{VOWELS.kasrateen}</Text>
         </View>
       </TouchableWithoutFeedback>
 
@@ -136,7 +136,7 @@ export default function Tashkeel5({
           }}
         >
         <View style={[styles.vowelContainer, { opacity: disableDammateen(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextDammateen} >{VOWELSWITHOUTSPACE.dammateen}</Text>
+          <Text style={styles.vowelTextDammateen}>{VOWELS.dammateen}</Text>
         </View>
       </TouchableWithoutFeedback>
 
@@ -156,7 +156,7 @@ export default function Tashkeel5({
           }}
         >
         <View style={[styles.vowelContainer, { opacity: disableDammateen(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextDammateen} >{VOWELSWITHOUTSPACE.sukoon}</Text>
+          <Text style={styles.vowelTextDammateen}>{VOWELS.sukoon}</Text>
         </View>
       </TouchableWithoutFeedback>
     </View>  
