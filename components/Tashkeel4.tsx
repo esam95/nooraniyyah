@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { VOWEL_CONTAINER_WIDTH } from '@/constants/screenDimensions';
 import { tashkeelProps } from '@/types/props';
+import VowelButton from './VowelButton';
 
 export default function Tashkeel4({ 
   targetLetterClicked, 
@@ -17,67 +18,38 @@ export default function Tashkeel4({
   }: tashkeelProps) {
   const [ disabledPeriod, setDisabledPeriod ] = useState(false);
 
+  const handlePressVowelButton = (vowel: string) => {
+    targetLetterClicked ? 
+    (
+      setDisabledPeriod(true),
+      setTimeout(function() { setDisabledPeriod(false)}, 4000),
+      setClickedVowel(vowel),
+      setVowelClicked(true), 
+      setVowelArray((prevVowelArray) => !prevVowelArray.includes(vowel) ? [...prevVowelArray, vowel]: prevVowelArray),
+      PlayVowel(vowel, setIsPlaying)
+    ): null
+  }
+
   return (
     <View style={styles.container}>
-      <TouchableWithoutFeedback 
-        disabled={disableFathateen(vowelArray, disabledPeriod, isPlaying)}
-        onPress={() => {
-          const newVowel = VOWELS.fathateen;  
-          targetLetterClicked ? 
-          (
-            setDisabledPeriod(true),
-            setTimeout(function() { setDisabledPeriod(false)}, 4000),
-            setClickedVowel(newVowel),
-            setVowelClicked(true), 
-            setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
-            PlayVowel(newVowel, setIsPlaying)
-          ): null
-          }}
-        >
-        <View style={[styles.vowelContainer, { opacity: disableFathateen(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextFathateen} >{VOWELS.fathateen}</Text>
-        </View>
-      </TouchableWithoutFeedback>
-
-      <TouchableWithoutFeedback 
-        disabled={disableKasrateen(vowelArray, disabledPeriod, isPlaying)}
-        onPress={() => {
-          const newVowel = VOWELS.kasrateen;  
-          targetLetterClicked ? 
-          (
-            setDisabledPeriod(true),
-            setTimeout(function() { setDisabledPeriod(false)}, 4000),
-            setClickedVowel(newVowel),
-            setVowelClicked(true), 
-            setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
-            PlayVowel(newVowel, setIsPlaying)
-          ): null
-          }}
-        >
-        <View style={[styles.vowelContainer, { opacity: disableKasrateen(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextKasrateen} >{VOWELS.kasrateen}</Text>
-        </View>
-      </TouchableWithoutFeedback>
-
-      <TouchableWithoutFeedback 
-        disabled={disableDammateen(vowelArray, disabledPeriod, isPlaying)}
-        onPress={() => {
-          const newVowel = VOWELS.dammateen;  
-          targetLetterClicked ? 
-          (
-            setDisabledPeriod(true),
-            setTimeout(function() { setDisabledPeriod(false)}, 4000),
-            setClickedVowel(newVowel),
-            setVowelClicked(true), 
-            setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
-            PlayVowel(newVowel, setIsPlaying)
-          ): null
-          }}
-        >
-        <View style={[styles.vowelContainer, { opacity: disableDammateen(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextDammateen} >{VOWELS.dammateen}</Text>
-        </View>
-      </TouchableWithoutFeedback>
+      <VowelButton 
+        isDisabled={disableFathateen(vowelArray, disabledPeriod, isPlaying)}
+        onVowelPress={handlePressVowelButton}
+        vowel={VOWELS.fathateen}
+        vowelStyle={styles.vowelTextFathateen}
+      />
+      <VowelButton 
+        isDisabled={disableKasrateen(vowelArray, disabledPeriod, isPlaying)}
+        onVowelPress={handlePressVowelButton}
+        vowel={VOWELS.kasrateen}
+        vowelStyle={styles.vowelTextKasrateen}
+      />
+      <VowelButton 
+        isDisabled={disableDammateen(vowelArray, disabledPeriod, isPlaying)}
+        onVowelPress={handlePressVowelButton}
+        vowel={VOWELS.dammateen}
+        vowelStyle={styles.vowelTextDammateen}
+      />
     </View>  
   );
 }
