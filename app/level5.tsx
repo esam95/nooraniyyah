@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ScrollView, StyleSheet, View } from "react-native";
-import { LETTERS, VOWELS } from '@/constants/lettersVowels';
+import { LETTERS, VOWELS, VOWELSWITHOUTSPACE } from '@/constants/lettersVowels';
 import TargetLetter5 from '@/components/TargetLetter5';
 import Tashkeel5 from '@/components/Tashkeel5';
 import GameSection5 from '@/components/GameSection5';
@@ -59,6 +59,14 @@ export default function Level5() {
           setCurrentCharIndex((prevCurrentCharIndex) => prevCurrentCharIndex + 1), 
           console.log('Target char and clickedVowel are the same', infoObject)
           , setClickedVowel('')
+        )
+        : null;
+        //If vowel is sukoon, jump over it
+        WORDS[wordIndex].charAt(currentCharIndex) === 'ْ' ?
+        (
+          setCurrentCharIndex((prevCurrentCharIndex) => prevCurrentCharIndex + 1), 
+          console.log('Target char is sukoon, move on to next character'),
+          setClickedVowel('')
         )
         : null;
       }

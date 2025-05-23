@@ -9,7 +9,6 @@ export default function VowelButton ({
   vowelStyle,
   vowelAsText,
   }: VowelButtonProps) {
-    console.log('isDisabled', vowel, '?', isDisabled)
   return(
     <TouchableWithoutFeedback 
       disabled={isDisabled}

@@ -13,7 +13,6 @@ export const VOWELS = {
   fathateen: ' ً',
   kasrateen: ' ٍ',
   dammateen: ' ٌ',
-  sukoon: ' ْ',
 }
 
 export const VOWELSWITHOUTSPACE = {

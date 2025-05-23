@@ -65,13 +65,6 @@ export default function Tashkeel5({
         vowelStyle={styles.vowelTextDammateen}
         vowelAsText={VOWELS.dammateen}
       />
-      <VowelButton 
-        isDisabled={disabledPeriod || currentCharIndex % 2 == 0}
-        onVowelPress={handlePressVowelButton}
-        vowel={VOWELSWITHOUTSPACE.sukoon}
-        vowelStyle={styles.vowelTextDammateen}
-        vowelAsText={VOWELS.sukoon}
-      />
     </View>  
   );
 }
