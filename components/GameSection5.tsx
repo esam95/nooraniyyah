@@ -24,10 +24,15 @@ export default function GameSection5({
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {words.map((word) => (
+      {words.map((word, index) => (
         <Animated.View key={word} style={styles.wordContainer}>
           <View style={styles.wordInner}>
-            <Text style={styles.word}>{word}</Text>
+            <Text style={[ 
+              styles.word, 
+              { opacity: index === wordIndex ? 0.5: 1}
+              ]}>
+                {word}
+              </Text>
           </View>
         </Animated.View>
       ))}

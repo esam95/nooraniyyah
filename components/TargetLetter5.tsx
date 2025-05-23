@@ -24,13 +24,11 @@ export default function TargetLetter5({
             setTimeout(function() { setDisabledPeriod(false)}, 2000),
             setClickedLetter(letter), 
             PlayLetter(letter, setIsPlaying)
-            }}>
+          }}>
           <View
             style={[
               styles.targetLetterContainer, 
-              { 
-                opacity: disabledPeriod || currentCharIndex % 2 !== 0 ? 0.5: 1
-              }
+              { opacity: disabledPeriod || currentCharIndex % 2 !== 0 ? 0.5: 1  }
             ]}>
             <Text style={styles.targetLetterText}>{letter}</Text>
           </View>
