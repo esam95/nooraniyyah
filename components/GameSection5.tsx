@@ -3,23 +3,21 @@ import { View, Text, Animated, StyleSheet, ScrollView } from 'react-native';
 import { SCREEN_HEIGHT, WORD_CONTAINER_WIDTH } from '@/constants/screenDimensions';
 import { gameSection5Props } from '@/types/props';
 import { WORDS } from '@/constants/words';
+import { PlayWord } from '@/functions/PlaySound';
 
-export default function GameSection5({ 
-  vowelArray, 
-  targetLetterClicked, 
-  setTargetLetterClicked, 
-  targetLetter, 
-  clickedVowel, 
-  vowelClicked, 
-  setVowelClicked,
-  isPlaying,
+export default function GameSection5({
   setIsPlaying,
   wordIndex
   }: gameSection5Props ) {
   const [words, setWords] = useState<string[]>([]);
 
   useEffect(() => {
-    setWords((prevWords) => [...prevWords, WORDS[wordIndex]]);
+    if(wordIndex !== 0 ) {
+      setTimeout(() => { PlayWord(wordIndex-1, setIsPlaying); }, 2000)
+      setTimeout(() => { setWords((prevWords) => [...prevWords, WORDS[wordIndex]]) }, 4000)
+    } else {
+      setWords((prevWords) => [...prevWords, WORDS[wordIndex]])
+    }
   }, [wordIndex]);
 
   return (

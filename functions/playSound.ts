@@ -169,3 +169,38 @@ export async function PlayLetterWithTanween(letter: string, vowel: string | null
     console.error('Error playing sound:', error, letter);
   }
 }
+
+export async function PlayWord(wordIndex: number, setIsPlaying: React.Dispatch<React.SetStateAction<boolean>> ) {
+  try {
+    console.log('Playing:', wordIndex);
+
+    // Unload any previously loaded sound
+    if (soundRef.current) {
+      await soundRef.current.unloadAsync();
+      soundRef.current = null;
+    }
+
+    // Map Arabic words to sound filenames
+    const file = 
+    wordIndex === 0 ? require('../assets/words/amara.mp3'): 
+    wordIndex === 1 ? require('../assets/words/adhina.mp3'): 
+    wordIndex === 2 ? require('../assets/words/akhadha.mp3'): 
+    wordIndex === 3 ? require('../assets/words/ahadun.mp3'): 
+    require('../assets/words/abadan.mp3');
+
+    // Load and play sound
+    const { sound } = await Audio.Sound.createAsync( file, { shouldPlay: true });
+    soundRef.current = sound;
+    setIsPlaying?.(true);
+
+    //Determine when sound has finished playing
+    sound.setOnPlaybackStatusUpdate((status) => {
+      if (status.isLoaded && status.didJustFinish) {
+        setIsPlaying?.(false);
+        console.log('PlayWord did just finish');
+      }
+    });
+  } catch (error) {
+    console.error('Error playing sound:', error, wordIndex);
+  }
+}
