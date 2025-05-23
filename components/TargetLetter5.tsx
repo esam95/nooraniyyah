@@ -25,7 +25,7 @@ export default function TargetLetter5({
             style={[
               styles.targetLetterContainer, 
               { 
-                opacity: letterArray.find(letterFromLetterArray => letterFromLetterArray === letter ) ? 1: 0.5 
+                opacity: currentCharIndex % 2 !== 0 || isPlaying ? 0.5: 1
               }
             ]}>
             <Text style={styles.targetLetterText}>{letter}</Text>

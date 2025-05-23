@@ -33,22 +33,25 @@ export default function Tashkeel4({
   return (
     <View style={styles.container}>
       <VowelButton 
-        isDisabled={disableFathateen(vowelArray, disabledPeriod, isPlaying)}
+        isDisabled={disableFathateen(disabledPeriod, isPlaying, vowelArray)}
         onVowelPress={handlePressVowelButton}
         vowel={VOWELS.fathateen}
         vowelStyle={styles.vowelTextFathateen}
+        vowelAsText={VOWELS.fatha}
       />
       <VowelButton 
-        isDisabled={disableKasrateen(vowelArray, disabledPeriod, isPlaying)}
+        isDisabled={disableKasrateen(disabledPeriod, isPlaying)}
         onVowelPress={handlePressVowelButton}
         vowel={VOWELS.kasrateen}
         vowelStyle={styles.vowelTextKasrateen}
+        vowelAsText={VOWELS.kasra}
       />
       <VowelButton 
-        isDisabled={disableDammateen(vowelArray, disabledPeriod, isPlaying)}
+        isDisabled={disableDammateen(disabledPeriod, isPlaying)}
         onVowelPress={handlePressVowelButton}
         vowel={VOWELS.dammateen}
         vowelStyle={styles.vowelTextDammateen}
+        vowelAsText={VOWELS.damma}
       />
     </View>  
   );

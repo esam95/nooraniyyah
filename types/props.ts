@@ -69,4 +69,5 @@ export interface VowelButtonProps {
   vowelStyle: object;
   isDisabled: boolean;
   onVowelPress: (vowel: string) => void;
+  vowelAsText: string;
 }

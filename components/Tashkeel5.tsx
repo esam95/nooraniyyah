@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { VOWEL_CONTAINER_WIDTH } from '@/constants/screenDimensions';
 import { tashkeel5Props } from '@/types/props';
+import VowelButton from './VowelButton';
 
 export default function Tashkeel5({ 
   targetLetterClicked, 
@@ -18,147 +19,64 @@ export default function Tashkeel5({
   }: tashkeel5Props) {
   const [ disabledPeriod, setDisabledPeriod ] = useState(false);
 
+  const handlePressVowelButton = (vowel: string) => {
+    setDisabledPeriod(true),
+    setTimeout(function() { setDisabledPeriod(false)}, 4000),
+    setClickedVowel(vowel),
+    PlayVowel(vowel, setIsPlaying)
+  }
+
   return (
     <View style={styles.container}>
-      <TouchableWithoutFeedback 
-        disabled={/* disableFatha(vowelArray, disabledPeriod, isPlaying) */currentCharIndex % 2 == 0}
-        onPress={() => {
-          const newVowel = VOWELSWITHOUTSPACE.fatha;  
-          // targetLetterClicked ? 
-          // (
-            // setDisabledPeriod(true),
-            // setTimeout(function() { setDisabledPeriod(false)}, 4000),
-            setClickedVowel(newVowel),
-            setVowelClicked(true)
-            // setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
-            // PlayVowel(newVowel, setIsPlaying)
-          // ): null
-          }}
-        >
-        <View style={[styles.vowelContainer, { opacity: disableFatha(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextFatha}>{VOWELS.fatha}</Text>
-        </View>
-      </TouchableWithoutFeedback>
-
-      <TouchableWithoutFeedback 
-        disabled={/* disableKasra(vowelArray, disabledPeriod, isPlaying) */currentCharIndex % 2 == 0}
-        onPress={() => {
-          const newVowel = VOWELSWITHOUTSPACE.kasra;  
-          // targetLetterClicked ? 
-          // (
-            // setDisabledPeriod(true),
-            // setTimeout(function() { setDisabledPeriod(false)}, 4000),
-            setClickedVowel(newVowel),
-            setVowelClicked(true)
-            // setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
-            // PlayVowel(newVowel, setIsPlaying)
-          // ): null
-          }}
-        >
-        <View style={[styles.vowelContainer, { opacity: disableKasra(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextKasra}>{VOWELS.kasra}</Text>
-        </View>
-      </TouchableWithoutFeedback>
-
-      <TouchableWithoutFeedback 
-        disabled={/* disableDamma(vowelArray, disabledPeriod, isPlaying) */currentCharIndex % 2 == 0}
-        onPress={() => {
-          const newVowel = VOWELSWITHOUTSPACE.damma;  
-          // targetLetterClicked ? 
-          // (
-            // setDisabledPeriod(true),
-            // setTimeout(function() { setDisabledPeriod(false)}, 4000),
-            setClickedVowel(newVowel),
-            setVowelClicked(true)
-            // setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
-            // PlayVowel(newVowel, setIsPlaying)
-          // ): null
-          }}
-        >
-        <View style={[styles.vowelContainer, { opacity: disableDamma(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextDamma}>{VOWELS.damma}</Text>
-        </View>
-      </TouchableWithoutFeedback>
-
-      <TouchableWithoutFeedback 
-        disabled={/* disableFathateen(vowelArray, disabledPeriod, isPlaying) */currentCharIndex % 2 == 0}
-        onPress={() => {
-          const newVowel = VOWELSWITHOUTSPACE.fathateen;  
-          // targetLetterClicked ? 
-          // (
-            // setDisabledPeriod(true),
-            // setTimeout(function() { setDisabledPeriod(false)}, 4000),
-            setClickedVowel(newVowel),
-            setVowelClicked(true)
-            // setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
-            // PlayVowel(newVowel, setIsPlaying)
-          // ): null
-          }}
-        >
-        <View style={[styles.vowelContainer, { opacity: disableFathateen(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextFathateen}>{VOWELS.fathateen}</Text>
-        </View>
-      </TouchableWithoutFeedback>
-
-      <TouchableWithoutFeedback 
-        disabled={/* disableKasrateen(vowelArray, disabledPeriod, isPlaying) */currentCharIndex % 2 == 0}
-        onPress={() => {
-          const newVowel = VOWELSWITHOUTSPACE.kasrateen;  
-          // targetLetterClicked ? 
-          // (
-            // setDisabledPeriod(true),
-            // setTimeout(function() { setDisabledPeriod(false)}, 4000),
-            setClickedVowel(newVowel),
-            setVowelClicked(true)
-            // setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
-            // PlayVowel(newVowel, setIsPlaying)
-          // ): null
-          }}
-        >
-        <View style={[styles.vowelContainer, { opacity: disableKasrateen(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextKasrateen}>{VOWELS.kasrateen}</Text>
-        </View>
-      </TouchableWithoutFeedback>
-
-      <TouchableWithoutFeedback 
-        disabled={/* disableDammateen(vowelArray, disabledPeriod, isPlaying) */currentCharIndex % 2 == 0}
-        onPress={() => {
-          const newVowel = VOWELSWITHOUTSPACE.dammateen;  
-          // targetLetterClicked ? 
-          // (
-            // setDisabledPeriod(true),
-            // setTimeout(function() { setDisabledPeriod(false)}, 4000),
-            setClickedVowel(newVowel),
-            setVowelClicked(true)
-            // setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
-            // PlayVowel(newVowel, setIsPlaying)
-          // ): null
-          }}
-        >
-        <View style={[styles.vowelContainer, { opacity: disableDammateen(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextDammateen}>{VOWELS.dammateen}</Text>
-        </View>
-      </TouchableWithoutFeedback>
-
-      <TouchableWithoutFeedback 
-        disabled={/* disableDammateen(vowelArray, disabledPeriod, isPlaying) */currentCharIndex % 2 == 0}
-        onPress={() => {
-          const newVowel = VOWELSWITHOUTSPACE.sukoon;  
-          // targetLetterClicked ? 
-          // (
-            // setDisabledPeriod(true),
-            // setTimeout(function() { setDisabledPeriod(false)}, 4000),
-            setClickedVowel(newVowel),
-            setVowelClicked(true)
-            // setVowelArray((prevVowelArray) => !prevVowelArray.includes(newVowel) ? [...prevVowelArray, newVowel]: prevVowelArray),
-            // PlayVowel(newVowel, setIsPlaying)
-          // ): null
-          }}
-        >
-        <View style={[styles.vowelContainer, { opacity: disableDammateen(vowelArray, disabledPeriod, isPlaying) ? 0.5 : 1 }]}>
-          <Text style={styles.vowelTextDammateen}>{VOWELS.sukoon}</Text>
-        </View>
-      </TouchableWithoutFeedback>
+      <VowelButton 
+        isDisabled={isPlaying || currentCharIndex % 2 == 0}
+        onVowelPress={handlePressVowelButton}
+        vowel={VOWELSWITHOUTSPACE.fatha}
+        vowelStyle={styles.vowelTextFatha}
+        vowelAsText={VOWELS.fatha}
+      />
+      <VowelButton 
+        isDisabled={isPlaying || currentCharIndex % 2 == 0}
+        onVowelPress={handlePressVowelButton}
+        vowel={VOWELSWITHOUTSPACE.kasra}
+        vowelStyle={styles.vowelTextKasra}
+        vowelAsText={VOWELS.kasra}
+      />
+      <VowelButton 
+        isDisabled={isPlaying || currentCharIndex % 2 == 0}
+        onVowelPress={handlePressVowelButton}
+        vowel={VOWELSWITHOUTSPACE.damma}
+        vowelStyle={styles.vowelTextDamma}
+        vowelAsText={VOWELS.damma}
+      />
+      <VowelButton 
+        isDisabled={isPlaying || currentCharIndex % 2 == 0}
+        onVowelPress={handlePressVowelButton}
+        vowel={VOWELSWITHOUTSPACE.fathateen}
+        vowelStyle={styles.vowelTextFathateen}
+        vowelAsText={VOWELS.fathateen}
+      />
+      <VowelButton 
+        isDisabled={isPlaying || currentCharIndex % 2 == 0}
+        onVowelPress={handlePressVowelButton}
+        vowel={VOWELSWITHOUTSPACE.kasrateen}
+        vowelStyle={styles.vowelTextKasrateen}
+        vowelAsText={VOWELS.kasrateen}
+      />
+      <VowelButton 
+        isDisabled={isPlaying || currentCharIndex % 2 == 0}
+        onVowelPress={handlePressVowelButton}
+        vowel={VOWELSWITHOUTSPACE.dammateen}
+        vowelStyle={styles.vowelTextDammateen}
+        vowelAsText={VOWELS.dammateen}
+      />
+      <VowelButton 
+        isDisabled={isPlaying || currentCharIndex % 2 == 0}
+        onVowelPress={handlePressVowelButton}
+        vowel={VOWELSWITHOUTSPACE.sukoon}
+        vowelStyle={styles.vowelTextDammateen}
+        vowelAsText={VOWELS.sukoon}
+      />
     </View>  
   );
 }

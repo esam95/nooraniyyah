@@ -1,4 +1,4 @@
-import { LETTERWITHTANWEEN, LETTERWITHVOWELS, VOWELS } from '@/constants/lettersVowels';
+import { LETTERWITHTANWEEN, LETTERWITHVOWELS, VOWELS, VOWELSWITHOUTSPACE } from '@/constants/lettersVowels';
 import LETTERSURI from '@/constants/uri';
 import { Audio } from 'expo-av';
 const soundRef = { current: null as Audio.Sound | null };
@@ -49,11 +49,11 @@ export async function PlayVowel(vowel: string, setIsPlaying: React.Dispatch<Reac
 
     // Map Arabic vowels to sound filenames
     const file = 
-    vowel === VOWELS.fatha ? require('../assets/fatha.mp3'): 
-    vowel === VOWELS.kasra ? require('../assets/kasra.mp3'): 
-    vowel === VOWELS.damma ? require('../assets/damma.mp3'): 
-    vowel === VOWELS.fathateen ? require('../assets/fathateen.mp3'): 
-    vowel === VOWELS.kasrateen ? require('../assets/kasrateen.mp3'): 
+    (vowel === VOWELS.fatha || vowel === VOWELSWITHOUTSPACE.fatha) ? require('../assets/fatha.mp3'): 
+    (vowel === VOWELS.kasra || vowel === VOWELSWITHOUTSPACE.kasra) ? require('../assets/kasra.mp3'): 
+    (vowel === VOWELS.damma || vowel === VOWELSWITHOUTSPACE.damma) ? require('../assets/damma.mp3'): 
+    (vowel === VOWELS.fathateen || vowel === VOWELSWITHOUTSPACE.fathateen) ? require('../assets/fathateen.mp3'): 
+    (vowel === VOWELS.kasrateen || vowel === VOWELSWITHOUTSPACE.kasrateen) ? require('../assets/kasrateen.mp3'): 
     require('../assets/dammateen.mp3');
 
     // Load and play sound

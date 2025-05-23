@@ -7,14 +7,16 @@ export default function VowelButton ({
   onVowelPress,
   vowel,
   vowelStyle,
+  vowelAsText,
   }: VowelButtonProps) {
+    console.log('isDisabled', vowel, '?', isDisabled)
   return(
     <TouchableWithoutFeedback 
       disabled={isDisabled}
       onPress={() => onVowelPress(vowel)}
     >
       <View style={[styles.vowelContainer, { opacity: isDisabled ? 0.5 : 1 }]}>
-        <Text style={vowelStyle}>{vowel}</Text>
+        <Text style={vowelStyle}>{vowelAsText}</Text>
       </View>
     </TouchableWithoutFeedback>
 )
