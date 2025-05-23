@@ -6,9 +6,8 @@ import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 
 export default function TargetLetter5({ 
   targetLetterClicked, 
-  letterArray, 
-  targetLetter, 
-  setTargetLetterClicked, 
+  disabledPeriod,
+  setDisabledPeriod, 
   isPlaying, 
   setIsPlaying, 
   setClickedLetter,
@@ -19,13 +18,18 @@ export default function TargetLetter5({
       {LETTERS.map((letter) => (
         <TouchableWithoutFeedback 
           key={letter}
-          disabled={currentCharIndex % 2 !== 0 || isPlaying}
-          onPress={() => { setClickedLetter(letter), PlayLetter(letter, setIsPlaying)}}>
+          disabled={disabledPeriod || currentCharIndex % 2 !== 0}
+          onPress={() => {
+            setDisabledPeriod(true),
+            setTimeout(function() { setDisabledPeriod(false)}, 2000),
+            setClickedLetter(letter), 
+            PlayLetter(letter, setIsPlaying)
+            }}>
           <View
             style={[
               styles.targetLetterContainer, 
               { 
-                opacity: currentCharIndex % 2 !== 0 || isPlaying ? 0.5: 1
+                opacity: disabledPeriod || currentCharIndex % 2 !== 0 ? 0.5: 1
               }
             ]}>
             <Text style={styles.targetLetterText}>{letter}</Text>

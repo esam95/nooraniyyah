@@ -8,20 +8,15 @@ import { tashkeel5Props } from '@/types/props';
 import VowelButton from './VowelButton';
 
 export default function Tashkeel5({ 
-  targetLetterClicked, 
   setClickedVowel, 
-  setVowelClicked, 
-  vowelArray,
-  setVowelArray, 
-  isPlaying, 
+  disabledPeriod,
+  setDisabledPeriod, 
   setIsPlaying,
   currentCharIndex
   }: tashkeel5Props) {
-  const [ disabledPeriod, setDisabledPeriod ] = useState(false);
-
   const handlePressVowelButton = (vowel: string) => {
     setDisabledPeriod(true),
-    setTimeout(function() { setDisabledPeriod(false)}, 4000),
+    setTimeout(function() { setDisabledPeriod(false)}, 2000),
     setClickedVowel(vowel),
     PlayVowel(vowel, setIsPlaying)
   }
@@ -29,49 +24,49 @@ export default function Tashkeel5({
   return (
     <View style={styles.container}>
       <VowelButton 
-        isDisabled={isPlaying || currentCharIndex % 2 == 0}
+        isDisabled={disabledPeriod || currentCharIndex % 2 == 0}
         onVowelPress={handlePressVowelButton}
         vowel={VOWELSWITHOUTSPACE.fatha}
         vowelStyle={styles.vowelTextFatha}
         vowelAsText={VOWELS.fatha}
       />
       <VowelButton 
-        isDisabled={isPlaying || currentCharIndex % 2 == 0}
+        isDisabled={disabledPeriod || currentCharIndex % 2 == 0}
         onVowelPress={handlePressVowelButton}
         vowel={VOWELSWITHOUTSPACE.kasra}
         vowelStyle={styles.vowelTextKasra}
         vowelAsText={VOWELS.kasra}
       />
       <VowelButton 
-        isDisabled={isPlaying || currentCharIndex % 2 == 0}
+        isDisabled={disabledPeriod || currentCharIndex % 2 == 0}
         onVowelPress={handlePressVowelButton}
         vowel={VOWELSWITHOUTSPACE.damma}
         vowelStyle={styles.vowelTextDamma}
         vowelAsText={VOWELS.damma}
       />
       <VowelButton 
-        isDisabled={isPlaying || currentCharIndex % 2 == 0}
+        isDisabled={disabledPeriod || currentCharIndex % 2 == 0}
         onVowelPress={handlePressVowelButton}
         vowel={VOWELSWITHOUTSPACE.fathateen}
         vowelStyle={styles.vowelTextFathateen}
         vowelAsText={VOWELS.fathateen}
       />
       <VowelButton 
-        isDisabled={isPlaying || currentCharIndex % 2 == 0}
+        isDisabled={disabledPeriod || currentCharIndex % 2 == 0}
         onVowelPress={handlePressVowelButton}
         vowel={VOWELSWITHOUTSPACE.kasrateen}
         vowelStyle={styles.vowelTextKasrateen}
         vowelAsText={VOWELS.kasrateen}
       />
       <VowelButton 
-        isDisabled={isPlaying || currentCharIndex % 2 == 0}
+        isDisabled={disabledPeriod || currentCharIndex % 2 == 0}
         onVowelPress={handlePressVowelButton}
         vowel={VOWELSWITHOUTSPACE.dammateen}
         vowelStyle={styles.vowelTextDammateen}
         vowelAsText={VOWELS.dammateen}
       />
       <VowelButton 
-        isDisabled={isPlaying || currentCharIndex % 2 == 0}
+        isDisabled={disabledPeriod || currentCharIndex % 2 == 0}
         onVowelPress={handlePressVowelButton}
         vowel={VOWELSWITHOUTSPACE.sukoon}
         vowelStyle={styles.vowelTextDammateen}

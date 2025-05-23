@@ -39,6 +39,8 @@ export interface targetLetter5Props {
   setTargetLetterClicked: React.Dispatch<React.SetStateAction<boolean>>;
   isPlaying: boolean;
   setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
+  disabledPeriod: boolean;
+  setDisabledPeriod: React.Dispatch<React.SetStateAction<boolean>>;
   setClickedLetter: React.Dispatch<React.SetStateAction<string>>;
   currentCharIndex: number;
 }
@@ -60,6 +62,8 @@ export interface tashkeel5Props {
   setVowelArray: React.Dispatch<React.SetStateAction<string[]>>;
   targetLetterClicked: boolean;
   isPlaying: boolean;
+  disabledPeriod: boolean;
+  setDisabledPeriod: React.Dispatch<React.SetStateAction<boolean>>;
   setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
   currentCharIndex: number;
 }

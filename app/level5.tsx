@@ -15,6 +15,7 @@ export default function Level5() {
   const [ vowelArray, setVowelArray ] = useState<string[]>([]);
   const [ targetLetterClicked, setTargetLetterClicked ] = useState<boolean>(false);
   const [ isPlaying, setIsPlaying ] = useState<boolean>(false);
+  const [ disabledPeriod, setDisabledPeriod ] = useState(false);
   const [ currentCharIndex, setCurrentCharIndex ] = useState<number>(0);
   const [ wordIndex, setWordIndex ] = useState<number>(0);
   const infoObject = {
@@ -82,6 +83,8 @@ export default function Level5() {
           setTargetLetterClicked={setTargetLetterClicked}
           isPlaying={isPlaying} 
           setIsPlaying={setIsPlaying}
+          disabledPeriod={disabledPeriod} 
+          setDisabledPeriod={setDisabledPeriod}
           setClickedLetter={setClickedLetter}
           currentCharIndex={currentCharIndex}/>
       </View>
@@ -96,6 +99,8 @@ export default function Level5() {
           setVowelClicked={setVowelClicked}
           isPlaying={isPlaying}
           setIsPlaying={setIsPlaying}
+          disabledPeriod={disabledPeriod} 
+          setDisabledPeriod={setDisabledPeriod}
           currentCharIndex={currentCharIndex}/>
       </View>
 
